@@ -35,6 +35,7 @@ gem "wysiwyg-rails"
 gem 'kaminari', '~> 0.16.3'
 gem 'clearance', '~> 1.8.1'
 gem 'mandrill-api', '~> 1.0.53', require: "mandrill"
+gem 'rails_12factor'
 
 group :development do
   gem "bundler-audit"
