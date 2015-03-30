@@ -1,0 +1,3 @@
+%ul.product-list
+  -products.each do |product|
+    =render partial: "partials/product_card", locals: { product: product }

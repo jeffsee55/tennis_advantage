@@ -1,0 +1,40 @@
+.container.clear-nav
+  %ul.accordion-tabs
+    %li.tab-header-and-content
+      %a.is-active.tab-link{:href => "javascript:void(0)"}
+        %h2 Summary
+      .tab-content
+        %h3 Status
+        %ul.list-table
+          =render partial: "partials/list_item",
+            locals: @order.to_local_list_item
+        %h3 Order Summary
+        =render partial: "orders/order_summary", locals: { order: @order }
+    %li.tab-header-and-content
+      %a.tab-link{:href => "javascript:void(0)"}
+        %h2 Shipping
+      .tab-content
+        .clear
+          .half-column
+            %h3 Shipping Information
+            %ul
+              %li= @order.name
+              %li= "#{ @order.street1 }, #{ @order.street2 }"
+              %li= "#{ @order.city }, #{ @order.state} #{ @order.zip }"
+            %hr.thick
+            %h3 Lowest Rate
+            %ul
+              %li=@order.shipment.lowest_rate.carrier
+              %li=@order.shipment.lowest_rate.service
+              %li="$#{ @order.shipment.lowest_rate.rate }"
+              -if @order.shipment.postage_label
+                =button_to "Postage Label", @order.shipment.postage_label.label_url, method: :get, target: "_blank"
+              =button_to "Pay and Print Label", ship_admin_order_path, method: :patch
+          .half-column
+            %h3 Package Information
+            =simple_form_for [:admin, @order], url: recalculate_shipping_admin_order_path do |f|
+              =f.input :weight, label: false, placeholder: @order.weight
+              =f.input :height, placeholder: @order.height
+              =f.input :length, placeholder: @order.length
+              =f.input :width, placeholder: @order.width
+              =f.submit "Recalculate Shipping"

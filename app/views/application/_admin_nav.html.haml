@@ -1,0 +1,30 @@
+.admin-nav
+  .container
+    .nav-container
+      .nav-logo
+        %h1 ADMIN
+      .nav-menu
+        %ul
+          %li
+            %strong
+              =link_to "DASHBOARD", dashboard_path
+          %li
+            %strong
+              =link_to "ORDERS", admin_orders_path
+          %li
+            %strong
+              =link_to "PRODUCTS", admin_products_path
+          %li
+            %strong
+              =link_to "POSTS", admin_posts_path
+          %li
+            %strong
+              =link_to "PAGES", admin_pages_path
+          %li
+            %strong
+              =link_to "MESSAGES", admin_messages_path
+          %li
+            %strong
+              =current_user.email
+          %li
+            =button_to "Sign Out", sign_out_path, method: :delete

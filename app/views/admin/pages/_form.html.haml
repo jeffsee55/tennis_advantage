@@ -1,0 +1,30 @@
+.container.clear-nav
+  =simple_form_for [:admin, @page] do |f|
+    =f.input :title
+    =f.input :slug
+    .modal#content_a
+      %label{:for => "content_a"}
+        Content A
+      =render partial: "content_a", locals: { f:f, input: "content_a" }
+    .modal#content_b
+      %label{:for => "content_b"}
+        Content B
+      =render partial: "content_b", locals: { f:f, input: "content_b" }
+    .modal#content_c
+      %label{:for => "content_c"}
+        Content C
+      =render partial: "content_c", locals: { f:f, input: "content_c" }
+    .modal#content_d
+      %label{:for => "content_d"}
+        Content D
+      =render partial: "content_d", locals: { f:f, input: "content_d" }
+    .modal#content_e
+      %label{:for => "content_e"}
+        Content E
+      =render partial: "content_e", locals: { f:f, input: "content_e" }
+    .modal#content_f
+      %label{:for => "content_f"}
+        Content F
+      =render partial: "content_f", locals: { f:f, input: "content_f" }
+    =embed_svg "#{@page.slug}.svg"
+    =f.submit "Submit", class: "left"

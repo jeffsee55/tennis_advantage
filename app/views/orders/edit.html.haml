@@ -1,0 +1,7 @@
+%ul.list-table
+  =render partial: "order_summary", locals: { order: @order }
+
+=simple_form_for @order do |f|
+  =f.submit "Checkout", class: "right"
+=button_to "Empty Cart", empty_cart_path, method: :delete, class: "left btn-outline-red"
+

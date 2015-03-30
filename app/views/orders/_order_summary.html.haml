@@ -1,0 +1,29 @@
+%h3 CONFIRM ORDER
+%hr.thick
+%table.list-table
+  -order.line_items.each do |line_item|
+    =render partial: "partials/list_item", locals: line_item.to_local_list_item
+%li.order-summary
+  %ul.billing
+    %li.bold Billing Information
+    %li= order.name
+    %li **** **** **** **89
+  %ul.shipping
+    %li.bold Shipping Information
+    %li= order.name
+    %li= "#{ order.street1 }, #{ order.street2 }"
+    %li= "#{ order.city }, #{ order.state} #{ order.zip }"
+  %table.totals
+    %tr
+      %td Sub Total
+      %td= humanized_money_with_symbol order.sub_total
+    %tr
+      %td Shipping
+      %td= humanized_money_with_symbol order.shipping_rate
+    %tr
+      %td Tax
+      %td= humanized_money_with_symbol order.tax
+    %tr
+      %td.bold Total
+      %td.bold= humanized_money_with_symbol order.total
+

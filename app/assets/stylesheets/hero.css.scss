@@ -1,0 +1,57 @@
+.hero {
+  @include display(flex);
+  @include align-items(center);
+  @include justify-content(center);
+  $hero-height: 70vh;
+  position: relative;
+  height: $hero-height;
+  background: $dark-gray;
+  overflow: hidden;
+  padding: 2em;
+
+  .text {
+    @include align-self(flex-end);
+    color: white;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+
+    h1 {
+      font-size: 2.75em;
+    }
+    h2 {
+      font-size: 2.25em;
+    }
+    h3 {
+      font-size: 2em;
+    }
+    h4 {
+      font-size: 1.75em;
+    }
+    h5 {
+      font-size: 1.5em;
+    }
+    h6 {
+      font-size: 1.25em;
+    }
+    p {
+      font-size: 1.25em;
+    }
+  }
+
+  .hero-slider {
+    position: absolute;
+    top: 0; right: 0; left: 0; bottom: 0;
+    .product-slider {
+      height: $hero-height;
+
+      ul {
+        height: $hero-height;
+        li {
+          height: $hero-height;
+        }
+      }
+    }
+  }
+}
+

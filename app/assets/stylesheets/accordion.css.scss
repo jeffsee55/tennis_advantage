@@ -1,0 +1,42 @@
+.accordion-tabs {
+
+  @include clearfix;
+  margin-bottom: 2em;
+
+  .tab-header-and-content {
+    list-style: none;
+
+    @include media($large-screen) {
+      display: inline;
+    }
+  }
+
+  .tab-link {
+    display: block;
+    padding-right: 1em;
+
+    @include media($large-screen) {
+      display: inline-block;
+    }
+  }
+
+  .is-active {
+    color: #ff0000;
+  }
+
+  .tab-content {
+    display: none;
+    width: 100%;
+    padding: 2em;
+    background: lighten($light-gray, 10);
+
+    @include media($large-screen) {
+      float: left;
+    }
+  }
+}
+
+.accordion-buttons {
+  @include span-columns(3);
+  float: right;
+}

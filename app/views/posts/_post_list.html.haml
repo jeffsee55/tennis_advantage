@@ -1,0 +1,11 @@
+.post-list
+  %ul
+    -posts.each do |post|
+      %li.post-card
+        .post-img
+          %div{style: "background: url( '#{ attachment_url post, :image_1, :fill, 250, 200 }' ), no-repeat center; background-size: cover"}
+        .post-content
+          %h4= post.title
+          %small= "#{time_ago_in_words post.updated_at} ago."
+          %br
+          =link_to "View Post", post

@@ -1,0 +1,57 @@
+.container.clear-nav
+  =button_to "All Products", admin_products_path, method: :get, class: "right"
+  =simple_form_for [:admin, product] do |f|
+    %ul.accordion-tabs
+      %li.tab-header-and-content
+        %a.is-active.tab-link{:href => "javascript:void(0)"}
+          %h2 Summary
+        .tab-content
+          %h3 Product
+          .half-column
+            =f.input :name, label: false, placeholder: "Name"
+            =f.input :price, label: false, placeholder: "Price"
+            =f.input :description, label: false, placeholder: "Description"
+          .half-column
+            =f.input :weight, label: "Weight (in ounces)", placeholder: "Ex. 15"
+            =f.input :length, label: "Length (in inches)", placeholder: "Ex. 12"
+            =f.input :height, label: "Height (in inches)", placeholder: "Ex. 8"
+            =f.input :width, label: "Width (in inches)", placeholder: "Ex. 3"
+      %li.tab-header-and-content
+        %a.tab-link{:href => "javascript:void(0)"}
+          %h2 Images
+        .tab-content
+          .half-column
+            %ul.product-list
+              =render partial: "partials/product_card", locals: { product: product }
+          .half-column
+            .inline-input
+              -if product.image_1_id?
+                #image_1_thumb.image_thumb{style: "background: url( #{ attachment_url product, :image_1, :fill, 75, 75 } ), no-repeat center; background-size: cover"}
+              -else
+                .image_thumb
+                  =fa_icon "upload"
+              =f.attachment_field :image_1
+            .inline-input
+              -if product.image_2_id?
+                #image_2_thumb.image_thumb{style: "background: url( #{ attachment_url product, :image_2, :fill, 75, 75 } ), no-repeat center; background-size: cover"}
+              -else
+                .image_thumb
+                  =fa_icon "upload"
+              =f.attachment_field :image_2
+            .inline-input
+              -if product.image_3_id?
+                #image_3_thumb.image_thumb{style: "background: url( #{ attachment_url product, :image_3, :fill, 75, 75 } ), no-repeat center; background-size: cover"}
+              -else
+                .image_thumb
+                  =fa_icon "upload"
+              =f.attachment_field :image_3
+            .inline-input
+              -if product.image_4_id?
+                #image_4_thumb.image_thumb{style: "background: url( #{ attachment_url product, :image_4, :fill, 75, 75 } ), no-repeat center; background-size: cover"}
+              -else
+                .image_thumb
+                  =fa_icon "upload"
+              =f.attachment_field :image_4
+    =f.submit "Save", class: "right"
+  -if product.persisted?
+    =button_to "Delete", [:admin, product], class: "btn-outline-red", method: :delete, data: { confirm: "Are you sure?" }

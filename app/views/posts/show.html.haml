@@ -1,0 +1,7 @@
+.page-content
+  .content-block
+    =image_tag attachment_url(@post, :image_1, :fill, 600, 400)
+  .content-block
+    %h4= @post.title
+    %small= "#{time_ago_in_words @post.updated_at} ago"
+    =@post.body.html_safe

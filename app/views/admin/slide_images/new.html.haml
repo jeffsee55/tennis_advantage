@@ -1,0 +1,24 @@
+.container.clear-nav
+  =button_to "All Images", admin_slide_images_path, method: :get, class: "right"
+  =simple_form_for [:admin, @slide_image] do |f|
+    %ul.accordion-tabs
+      %li.tab-header-and-content
+        %a.tab-link{:href => "javascript:void(0)"}
+          %h2 Image
+        .tab-content
+          .half-column
+            -if @slide_image.image_id?
+              .post-image{style: "background: url( #{ attachment_url @slide_image, :image, :fill, 500, 300 } ), no-repeat center; background-size: cover"}
+            -else
+              .post-image{style: "background: url( 'http://placehold.it/500x300&text=No%20Image' ), no-repeat center; background-size: cover"}
+          .half-column
+            .inline-input
+              -if @slide_image.image_id?
+                #image_1_thumb.image_thumb{style: "background: url( #{ attachment_url @slide_image, :image, :fill, 75, 75 } ), no-repeat center; background-size: cover"}
+              -else
+                .image_thumb
+                  =fa_icon "upload"
+              =f.attachment_field :image
+    =f.submit "Save", class: "right"
+  -if @slide_image.persisted?
+    =button_to "Delete", [:admin, @slide_image], class: "btn-outline-red", method: :delete, data: { confirm: "Are you sure?" }

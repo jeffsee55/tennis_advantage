@@ -1,0 +1,28 @@
+%h3 CART
+%hr.thick
+%table.list-table
+  -@line_items.each do |line_item|
+    =render partial: "partials/list_item", locals: line_item.to_local_list_item
+.order-summary
+  %ul.billing
+    %li.bold Billing Information
+    %li --
+  %ul.shipping
+    %li.bold Billing Information
+    %li --
+  %table.totals
+    %tr
+      %td Sub Total
+      %td= @line_items.sub_total
+    %tr
+      %td Shipping
+      %td --
+    %tr
+      %td Tax
+      %td --
+    %tr
+      %td.bold Total
+      %td.bold --
+
+=button_to "Continue to checkout", new_order_path, method: :get, class: "right"
+=button_to "Empty Cart", empty_cart_path, method: :delete, class: "left btn-outline-red"

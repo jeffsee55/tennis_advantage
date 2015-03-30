@@ -1,0 +1,52 @@
+table.list-table {
+  tr {
+    background: $light-gray;
+  }
+
+  td {
+    padding: 1em;
+  }
+
+  .icon {
+    display: none;
+    padding-right: 1em;
+    width: 10%;
+
+    @include media($medium-screen) {
+      display: table-cell;
+    }
+
+    & > div {
+      margin: auto;
+    }
+    .sprite {
+      @include display(flex);
+      @include align-items(center);
+      @include justify-content(center);
+      width: 75px;
+      height: 75px;
+      border-radius: 50%;
+      text-align: center;
+    }
+
+    .img {
+      width: 75px;
+      height: 75px;
+      border-radius: 50%;
+    }
+  }
+
+  .primary {
+    width: 20%;
+  }
+
+  .secondary {
+    text-align: right;
+    width: 40%;
+  }
+
+  .details {
+    text-align: right;
+    width: 20%;
+  }
+}

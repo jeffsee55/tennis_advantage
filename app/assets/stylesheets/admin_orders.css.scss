@@ -1,0 +1,11 @@
+div.shipping-option {
+  @include span-columns(4);
+
+  &:nth-child(3n) {
+    @include omega();
+  }
+
+  button {
+    width: 100%;
+  }
+}

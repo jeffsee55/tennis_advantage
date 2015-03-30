@@ -1,0 +1,15 @@
+.pagination {
+  @include display(flex);
+  @include justify-content(center);
+
+  span {
+    padding: 0.4em 0.7em 0.1em 0.7em;
+    background: $light-gray;
+    border-radius: 2px;
+    margin: 0.2em;
+
+    &:hover {
+      background: darken($light-gray, 10);
+    }
+  }
+}

@@ -1,0 +1,38 @@
+.half-column .product-list .product-card {
+  @include span-columns(6);
+  @include shift(3);
+}
+
+div.product_weight, div.product_length, div.product_height, div.product_width {
+  @include span-columns(6);
+  &:nth-child(even) {
+    @include omega();
+  }
+}
+
+.inline-input {
+  @include clearfix();
+  @include display(flex);
+  @include align-items(center);
+  padding: 0.5em 0;
+
+  .image_thumb {
+    @include display(flex);
+    @include align-items(center);
+    @include justify-content(center);
+    background-color: $red;
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    float: left;
+    color: white;
+  }
+  input {
+    float: right;
+    display: block;
+    width: 60%;
+    margin-left: 10%;
+    margin-bottom: 0;
+    border-radius: $base-border-radius 0 0 $base-border-radius;
+  }
+}

@@ -1,0 +1,7 @@
+%li.product-card
+  =render partial: "partials/product_slider", locals: { product: product }
+  .product-content
+    .product-price
+      =money_without_cents_and_with_symbol product.price
+    %h4=product.name
+    =link_to "View", product

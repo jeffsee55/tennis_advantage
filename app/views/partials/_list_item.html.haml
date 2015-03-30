@@ -1,0 +1,15 @@
+%tr
+  %td.icon
+    -if img
+      .img{style: "background: url( #{ attachment_url img, :image_1, :fill, 75, 75 } ), no-repeat center; background-size: cover"}
+    -else
+      .sprite{ class: "#{ color } " }
+        %i{ class: "fa fa-2x #{ icon } " }
+  %td.primary
+    %h4=primary
+    %a{ href: "#{ link }" }
+      %h5=link_text
+  %td.secondary
+    =secondary
+  %td.details
+    =details

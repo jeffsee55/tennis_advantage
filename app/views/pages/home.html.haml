@@ -1,0 +1,35 @@
+=content_for :hero do
+  .hero
+    .text
+      = @page.content_a.html_safe
+      %button.primary Action
+    .hero-slider
+      .product-slider
+        %a.prev{ href: "javascript:void(0)" }
+          =fa_icon "chevron-left 2x"
+        %a.next{ href: "javascript:void(0)" }
+          =fa_icon "chevron-right 2x"
+        %ul
+          -@slide_images.each do |slide_image|
+            %li{style: "background: url( #{ attachment_url slide_image, :image, :fill, 1100, 500 } ), no-repeat center; background-size: cover"}
+= render partial: "partials/products_list", locals: { products: @products }
+%hr.thick
+.page-content
+  .content-block
+    =@page.content_b.html_safe
+  .content-block
+    -if @page.content_c.present?
+      =@page.content_c.html_safe
+    -else
+      %img{src: 'https://ununsplash.imgix.net/photo-1414604582943-2fd913b3cb17?fit=crop&fm=jpg' }
+.page-content
+  %h3 Latest News
+  %hr.thick
+  .content-block
+    =image_tag attachment_url(@post, :image_1, :fill, 600, 400)
+  .content-block
+    %h4= @post.title
+    %small= "#{time_ago_in_words @post.updated_at} ago"
+    %br
+    =truncate(strip_tags(@post.body.html_safe), length: 500)
+    =button_to "Read more", post_path(@post), method: :get

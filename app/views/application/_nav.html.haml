@@ -1,0 +1,22 @@
+.container
+  .nav
+    =link_to root_path, class: "nav-logo" do
+      = embed_svg "logo.svg"
+    .nav-menu
+      %ul
+        %li
+          =link_to "SHOP", products_path
+        %li
+          =link_to "ABOUT", about_path
+        %li
+          =link_to "CONTACT", contact_path
+        %li
+          =link_to "ARTICLES", posts_path
+        %li
+          =link_to cart_path do
+            %i.fa.fa-shopping-cart
+            =cart_session.item_count
+      #mobile-menu-close
+        %i.fa.fa-close.fa-2x
+    #mobile-menu-open
+      %i.fa.fa-bars.fa-2x

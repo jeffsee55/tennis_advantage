@@ -1,0 +1,5 @@
+%input.modal-state{:id => input, :type => "checkbox"}
+  .modal-window
+    .modal-inner
+      %label.modal-close{:for => "modal"}
+      =f.input input.to_sym, label: false, input_html: { rows: 5 }

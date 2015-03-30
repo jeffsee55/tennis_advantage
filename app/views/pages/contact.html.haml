@@ -1,0 +1,14 @@
+.page-content
+  .content-block
+    %img{src: 'https://unsplash.imgix.net/photo-1415033523948-6c31d010530d?q=75&fm=jpg&s=559455b1ad675f8dc95a04528044f870' }
+  .content-block
+    %h1 CONTACT
+    %p= simple_format @page.content_a
+    =simple_form_for @message do |f|
+      =f.input :name, label: false, placeholder: "Name"
+      =f.input :email, label: false, placeholder: "Email"
+      =f.input :body, label: false, placeholder: "Message"
+      =f.submit "Send Message"
+%hr.thick
+%h1 OUR PRODUCTS
+= render partial: "partials/products_list", locals: { products: @products }

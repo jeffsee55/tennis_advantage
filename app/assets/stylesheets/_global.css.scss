@@ -1,0 +1,119 @@
+body {
+  background-color: white;
+  color: $medium-gray;
+}
+
+#flash {
+
+  & > div {
+    padding: 1em 2em;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 10;
+    color: white;
+  }
+
+  #flash_notice {
+    background: $green;
+  }
+
+  #flash_alert {
+    background: $red;
+  }
+}
+
+.clear-nav {
+  margin-top: 50px;
+}
+
+hr {
+  margin: 1em 0;
+}
+
+hr.dark {
+  border-color: $medium-gray;
+}
+
+hr.thick {
+  border-bottom: 4px solid;
+}
+
+input{
+  background: none;
+  box-shadow: none;
+  padding: 0.5em;
+  margin-bottom: 1em;
+  border-radius: 2px;
+  width: 100%;
+}
+
+input.btn-outline-red {
+  border: 1px solid $red;
+  background-color: transparent;
+  color: $red;
+
+  &:hover {
+    background-color: transparent;
+    color: darken($red, 15);
+  }
+}
+
+.right {
+  float: right;
+}
+
+.left {
+  float: left;
+}
+
+.clear {
+  @include clearfix();
+}
+
+.container {
+  @include outer-container();
+  padding: 0 0.5em;
+  position: relative;
+
+  @include media($large-screen) {
+    padding: 0;
+  }
+}
+
+.bold {
+  font-weight: 700;
+}
+
+.success-bg {
+  background-color: $green;
+}
+
+.primary-bg {
+  background-color: $blue;
+}
+
+.warning-bg {
+  background-color: $yellow;
+}
+
+.danger-bg {
+  background-color: $red;
+}
+
+[id^="content-"] {
+  rect {
+    cursor: pointer;
+    &:hover {
+      fill: $green;
+    }
+  }
+}
+
+
+body[class^="admin-"] {
+  padding-bottom: 4em;
+}
+
+

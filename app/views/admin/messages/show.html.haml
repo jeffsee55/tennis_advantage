@@ -1,0 +1,12 @@
+.container.clear-nav
+  %ul.accordion-tabs
+    %li.tab-header-and-content
+      %a.is-active.tab-link{:href => "javascript:void(0)"}
+      .tab-content
+        %ul
+          %li
+            %h3= @message.name
+          %li
+            %h5= @message.email
+          %li= @message.body
+  =button_to "Delete Message", admin_message_path(@message), class: "right", method: :delete, data: { confirm: "Are you sure?" }

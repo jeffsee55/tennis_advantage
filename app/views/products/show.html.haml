@@ -1,0 +1,11 @@
+.page-content
+  .content-block
+    =render partial: "partials/product_slider", locals: { product: @product }
+  .content-block
+    %h1= @product.name.upcase
+    %h3= humanized_money_with_symbol @product.price
+    %p= @product.description
+    =button_to "Add to Cart", create_line_item_path(line_item: { product_id: @product.id, qty: 1 })
+%hr.thick
+%h1 OTHER PRODUCTS
+= render partial: "partials/products_list", locals: { products: @products }

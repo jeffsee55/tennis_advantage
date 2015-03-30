@@ -1,0 +1,26 @@
+.new-slide-image {
+  float: right;
+
+  input#slide_image_image, input[type="submit"] {
+    @include span-columns(6);
+  }
+}
+
+.admin-slide-images {
+
+  li {
+    @include span-columns(6);
+    position: relative;
+    height: 300px;
+    margin-bottom: 2em;
+
+    &:nth-child(2n) {
+      @include omega();
+    }
+  }
+
+  .slide-image-delete {
+    position: absolute;
+    padding: 1em;
+  }
+}

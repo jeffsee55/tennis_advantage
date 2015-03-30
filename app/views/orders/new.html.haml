@@ -1,0 +1,30 @@
+.header
+  %h3 PAYMENT INFORMATION
+  =button_to "Edit cart", cart_path, method: :get, class: "right"
+  %hr.thick
+.center-form
+  %h6 Please enter your payment and shipping information below
+  =simple_form_for @order do |f|
+    -if params[:errors]
+      .payment-errors
+        =params[:errors]
+    =f.input :name, label: false, input_html: { value: "Test User" }
+    .street
+      =f.input :street1, label: false, input_html: { value: "421 Duncan Chapel Rd" }
+      =f.input :street2, label: false, input_html: { value: "Apt 136" }
+    .location
+      =f.input :city, label: false, input_html: { value: "Greenville" }
+      =f.input :state, label: false, input_html: { value: "SC" }
+      =f.input :zip, label: false, input_html: { value: "29617" }
+    =text_field_tag :cc_num, "4242424242424242"
+    .card-details
+      =text_field_tag :cvc, "123"
+      =text_field_tag :exp_month, "12"
+      =text_field_tag :exp_year, "2016"
+    =f.submit "Continue", class: "right"
+:erb
+  <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+:javascript
+  Stripe.setPublishableKey('pk_test_IEYyj5VagNH64xfmDOYvhbc9')
+
+

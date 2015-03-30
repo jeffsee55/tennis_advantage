@@ -1,0 +1,11 @@
+.container.clear-nav
+  .header
+    %h1=resource_name.pluralize.upcase
+    =button_to "New #{resource_name.capitalize}", button, class: "right", method: :get if button
+    %hr.thick
+  -resources.each do |resource|
+    %table.list-table
+      =render partial: "partials/list_item",
+        locals: resource.to_local_list_item
+
+  =paginate resources
