@@ -21,3 +21,6 @@ $ ->
   $(".modal-inner").on "click", (e) ->
     e.stopPropagation()
     return
+
+  $("#content-slideshow").click ->
+    window.location = "/admin/slide_images"

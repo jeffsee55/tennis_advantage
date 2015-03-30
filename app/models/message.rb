@@ -18,4 +18,8 @@ class Message < ActiveRecord::Base
       details: self.email,
     }
   end
+
+  def send_email
+    SiteMailer.new_message(self)
+  end
 end

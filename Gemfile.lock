@@ -105,6 +105,7 @@ GEM
     email_validator (1.5.0)
       activemodel
     erubis (2.7.0)
+    excon (0.44.2)
     execjs (2.4.0)
     factory_girl (4.5.0)
       activesupport (>= 3.0.0)
@@ -156,6 +157,9 @@ GEM
       addressable (~> 2.3)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
+    mandrill-api (1.0.53)
+      excon (>= 0.16.0, < 1.0)
+      json (>= 1.7.7, < 2.0)
     method_source (0.8.2)
     mime-types (2.4.3)
     mini_magick (4.0.4)
@@ -326,6 +330,7 @@ DEPENDENCIES
   jquery-rails
   kaminari (~> 0.16.3)
   launchy
+  mandrill-api (~> 1.0.53)
   mini_magick
   money-rails (~> 1.3.0)
   neat (~> 1.5.1)

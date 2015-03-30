@@ -165,6 +165,10 @@ class Order < ActiveRecord::Base
     end
   end
 
+  def send_email
+    SiteMailer.new_order(self)
+  end
+
   def icon
     if current_state == "purchased"
       return "fa-usd"

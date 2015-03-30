@@ -9,6 +9,7 @@
       .payment-errors
         =params[:errors]
     =f.input :name, label: false, input_html: { value: "Test User" }
+    =f.input :email, label: false, input_html: { value: "user@example.com" }
     .street
       =f.input :street1, label: false, input_html: { value: "421 Duncan Chapel Rd" }
       =f.input :street2, label: false, input_html: { value: "Apt 136" }

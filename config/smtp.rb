@@ -1,9 +1,10 @@
 SMTP_SETTINGS = {
-  #address: ENV.fetch("SMTP_ADDRESS"), # example: "smtp.sendgrid.net"
-  #authentication: :plain,
-  #domain: ENV.fetch("SMTP_DOMAIN"), # example: "this-app.com"
-  #enable_starttls_auto: true,
-  #password: ENV.fetch("SMTP_PASSWORD"),
-  #port: "587",
-  #user_name: ENV.fetch("SMTP_USERNAME")
+  address: "smtp.mandrillapp.com",
+  port: 587,
+  enable_starttls_auto: true,
+  user_name: "jeffsee.55@gmail.com",
+  password: ENV["MANDRILL_API_KEY"],
+  authentication: "login"
 }
+ActionMailer::Base.delivery_method = :smtp
+ActionMailer::Base.default charset: "utf-8"

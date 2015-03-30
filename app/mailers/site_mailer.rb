@@ -6,7 +6,7 @@ class SiteMailer < ActionMailer::Base
   end
 
   def new_message(message)
-    template_name = "new-message"
+    template_name = "selfie-new-message"
     template_content = []
     message = {
       to: [
@@ -25,7 +25,7 @@ class SiteMailer < ActionMailer::Base
   end
 
   def new_order(order)
-    template_name = "new-order"
+    template_name = "selfie-new-order"
     template_content = []
     message = {
       to: [
@@ -35,7 +35,7 @@ class SiteMailer < ActionMailer::Base
       global_merge_vars: [
         { name: "NAME", content: order.name },
         { name: "EMAIL", content: order.email },
-        { name: "BODY", content: order.summary },
+        { name: "BODY", content: "You have a new order" },
         { name: "ORDER_URL", content: admin_order_url(order.id) }
       ],
     }

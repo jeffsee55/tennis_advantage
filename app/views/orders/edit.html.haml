@@ -1,4 +1,6 @@
-%ul.list-table
+%h3 CONFIRM ORDER
+%hr.thick
+%table.list-table
   =render partial: "order_summary", locals: { order: @order }
 
 =simple_form_for @order do |f|

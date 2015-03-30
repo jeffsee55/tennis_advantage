@@ -1,9 +1,7 @@
-%h3 CONFIRM ORDER
-%hr.thick
 %table.list-table
   -order.line_items.each do |line_item|
     =render partial: "partials/list_item", locals: line_item.to_local_list_item
-%li.order-summary
+.order-summary
   %ul.billing
     %li.bold Billing Information
     %li= order.name

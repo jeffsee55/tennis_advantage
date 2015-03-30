@@ -34,6 +34,7 @@ gem "font-awesome-rails"
 gem "wysiwyg-rails"
 gem 'kaminari', '~> 0.16.3'
 gem 'clearance', '~> 1.8.1'
+gem 'mandrill-api', '~> 1.0.53', require: "mandrill"
 
 group :development do
   gem "bundler-audit"

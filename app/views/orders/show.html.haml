@@ -1,4 +1,4 @@
-%ul.list-table
+%table.list-table
   -@line_items.each do |line_item|
     =render partial: "partials/list_item", locals: line_item.to_local_list_item
   %li.order-summary

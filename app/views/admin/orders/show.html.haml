@@ -5,7 +5,7 @@
         %h2 Summary
       .tab-content
         %h3 Status
-        %ul.list-table
+        %table.list-table
           =render partial: "partials/list_item",
             locals: @order.to_local_list_item
         %h3 Order Summary
@@ -28,8 +28,9 @@
               %li=@order.shipment.lowest_rate.service
               %li="$#{ @order.shipment.lowest_rate.rate }"
               -if @order.shipment.postage_label
-                =button_to "Postage Label", @order.shipment.postage_label.label_url, method: :get, target: "_blank"
-              =button_to "Pay and Print Label", ship_admin_order_path, method: :patch
+                =button_to "Print Postage Label", @order.shipment.postage_label.label_url, method: :get, target: "_blank"
+              -else
+                =button_to "Pay and Print Label", ship_admin_order_path, method: :patch
           .half-column
             %h3 Package Information
             =simple_form_for [:admin, @order], url: recalculate_shipping_admin_order_path do |f|
