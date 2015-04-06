@@ -149,62 +149,62 @@ Product.create(
   height: 6
 )
 
-post.create(
-  title: "april newsletter",
-  body: "this is a new posttennis advantage will be offering a group rate for parties of # or more. lorem ipsum dolor sit amet, consectetur adipiscing elit. nullam eu vehicula est. donec porta in tortor sed varius. praesent nec lorem eu ex porta vulputate. morbi lectus eros, viverra quis leo quis, bibendum aliquet dui. etiam semper, tellus vitae aliquet egestas, tellus metus tristique magna, vitae egestas eros velit a leo. vivamus dapibus porttitor magna et venenatis. cras pretium metus sem, non ultricies lacus bibendum non. etiam fermentum pretium odio sit amet efficitur. aenean consectetur ante ut ultricies placerat. proin lacinia tincidunt aliquet. maecenas rutrum placerat ipsum eget condimentum. phasellus placerat suscipit elit a suscipit. etiam sed diam est. duis non lacus pharetra, faucibus ante id, ullamcorper quam. in varius, enim ut tempus porttitor, eros quam tempus ipsum, quis bibendum tortor nulla in nisi. etiam massa ligula, dignissim nec nisi ut, egestas commodo erat. mauris sit amet tincidunt nisi, ac ultricies justo. praesent iaculis odio ac urna accumsan pharetra. aenean venenatis velit eget orci suscipit vestibulum. proin imperdiet eros mi, a dapibus ligula congue sit amet. aliquam ac felis vehicula, rutrum ipsum vitae, placerat ipsum. fusce ante turpis, pretium egestas elit nec, tempor suscipit massa. phasellus sed quam libero. sed urna enim, cursus feugiat feugiat et, venenatis at turpis. maecenas at lectus diam. aenean a eros ipsum. interdum et malesuada fames ac ante ipsum primis in faucibus. nulla facilisi. maecenas neque dui, molestie in lectus non, eleifend gravida magna."
+Post.create(
+  title: "April Newsletter",
+  body: "This is a new post. tennis advantage will be offering a group rate for parties of # or more. lorem ipsum dolor sit amet, consectetur adipiscing elit. nullam eu vehicula est. donec porta in tortor sed varius. praesent nec lorem eu ex porta vulputate. morbi lectus eros, viverra quis leo quis, bibendum aliquet dui. etiam semper, tellus vitae aliquet egestas, tellus metus tristique magna, vitae egestas eros velit a leo. vivamus dapibus porttitor magna et venenatis. cras pretium metus sem, non ultricies lacus bibendum non. etiam fermentum pretium odio sit amet efficitur. aenean consectetur ante ut ultricies placerat. proin lacinia tincidunt aliquet. maecenas rutrum placerat ipsum eget condimentum. phasellus placerat suscipit elit a suscipit. etiam sed diam est. duis non lacus pharetra, faucibus ante id, ullamcorper quam. in varius, enim ut tempus porttitor, eros quam tempus ipsum, quis bibendum tortor nulla in nisi. etiam massa ligula, dignissim nec nisi ut, egestas commodo erat. mauris sit amet tincidunt nisi, ac ultricies justo. praesent iaculis odio ac urna accumsan pharetra. aenean venenatis velit eget orci suscipit vestibulum. proin imperdiet eros mi, a dapibus ligula congue sit amet. aliquam ac felis vehicula, rutrum ipsum vitae, placerat ipsum. fusce ante turpis, pretium egestas elit nec, tempor suscipit massa. phasellus sed quam libero. sed urna enim, cursus feugiat feugiat et, venenatis at turpis. maecenas at lectus diam. aenean a eros ipsum. interdum et malesuada fames ac ante ipsum primis in faucibus. nulla facilisi. maecenas neque dui, molestie in lectus non, eleifend gravida magna."
 )
 
-program.create(
-  name: "red ball",
-  description: "the red stage is for beginners. the red ball is larger than a yellow ball and doesn’t bounce as high (just 25 per cent compression), making it a breeze for even the youngest players to hit it comfortably. the courts and nets used in the red stage are much smaller and easier for kids to move around.",
-  category: "anz hotshots"
+Program.create(
+  name: "Red Ball",
+  description: "The red stage is for beginners. the red ball is larger than a yellow ball and doesn’t bounce as high (just 25 per cent compression), making it a breeze for even the youngest players to hit it comfortably. the courts and nets used in the red stage are much smaller and easier for kids to move around.",
+  category: "ANZ Hotshots"
 )
 
-program.create(
-  name: "orange ball",
-  description: "after mastering the red stage, children move on to the orange stage where the ball bounces a little higher (50 per cent compression) and the court is a bit bigger.",
-  category: "anz hotshots"
+Program.create(
+  name: "Orange Ball",
+  description: "After mastering the red stage, children move on to the orange stage where the ball bounces a little higher (50 per cent compression) and the court is a bit bigger.",
+  category: "ANZ Hotshots"
 )
 
-program.create(
-  name: "green ball",
-  description: "the ball used in the green stage has a higher compression (75 per cent of a yellow tennis ball) and children play on a full-size court.",
-  category: "anz hotshots"
+Program.create(
+  name: "Green Ball",
+  description: "The ball used in the green stage has a higher compression (75 per cent of a yellow tennis ball) and children play on a full-size court.",
+  category: "ANZ Hotshots"
 )
 
-program.create(
-  name: "round robins",
-  description: "including school holiday round robins - mjds round robins",
-  category: "competitions"
+Program.create(
+  name: "Round Robins",
+  description: "Including school holiday round robins - mjds round robins",
+  category: "Competitions"
 )
 
-program.create(
-  name: "local junior competitions",
-  description: "all our players are encouraged to play in local competitions including parramata saturday morning xpoint",
-  category: "competitions"
+Program.create(
+  name: "Local Junior Competitions",
+  description: "All our players are encouraged to play in local competitions including parramata saturday morning xpoint",
+  category: "Competitions"
 )
 
-program.create(
-  name: "tournament scheduling",
-  description: "for tournament scheduling click here",
-  category: "competitions"
+Program.create(
+  name: "Tournament Scheduling",
+  description: "For tournament scheduling click here",
+  category: "Competitions"
 )
 
-program.create(
-  name: "group lessons",
-  description: "available monday through friday catering for beginner to advanced. both morning and afternoon times available",
-  category: "lessons"
+Program.create(
+  name: "Group Lessons",
+  description: "Available monday through friday catering for beginner to advanced. both morning and afternoon times available",
+  category: "Lessons"
 )
 
-program.create(
-  name: "private lessons",
-  description: "private lessons are available monday through saturday. junior coach - $35 per 1/2 hour. private lessons from scott gregson - $50 per 1/2 hour.",
-  category: "lessons"
+Program.create(
+  name: "Private Lessons",
+  description: "Private lessons are available monday through saturday. junior coach - $35 per 1/2 hour. private lessons from scott gregson - $50 per 1/2 hour.",
+  category: "Lessons"
 )
 
-program.create(
-  name: "adult classes",
-  description: "ladies group classes available most days. phone scott for availability 0414 555 612",
+Program.create(
+  name: "Adult Classes",
+  description: "Ladies group classes available most days. phone scott for availability 0414 555 612",
   category: "Lessons"
 )
 
