@@ -1,7 +1,7 @@
 set :application, 'tennis_advantage'
-set :repo_url, 'git@github.com:jeffsee55/tennis-advantage.git'
+set :repo_url, 'git@github.com:jeffsee55/tennis_advantage.git'
 
-set :deploy_to, '/home/deploy/myapp'
+set :deploy_to, '/home/deploy/tennis_advantage'
 
 set :linked_files, %w{config/database.yml .env}
 set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system}
