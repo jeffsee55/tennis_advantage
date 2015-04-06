@@ -40,6 +40,7 @@ gem 'capistrano-bundler', '~> 1.1.2'
 gem 'capistrano-rails', '~> 1.1.1'
 gem 'capistrano-rbenv', github: "capistrano/rbenv"
 gem "dotenv-rails"
+gem "aws-sdk", '< 2'
 
 group :development do
   gem "bundler-audit"
