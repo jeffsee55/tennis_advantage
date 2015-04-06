@@ -9,10 +9,12 @@ class OrdersController < ApplicationController
 
   def new
     @order = Order.new
+    @page = Page.find_by_slug("orders")
   end
 
   def show
     @order = Order.find(params[:id])
+    @page = Page.find_by_slug("orders")
   end
 
   def create
@@ -27,20 +29,21 @@ class OrdersController < ApplicationController
 
   def edit
     @order = Order.find(params[:id])
+    @page = Page.find_by_slug("orders")
   end
 
   def update
     @order = Order.find(params[:id])
     @order.purchase
     cart_session.clear
-    redirect_to products_path, notice: "Thanks"
+    redirect_to @order, notice: "Thank you for your order, a confirmation email has been sent to you."
   end
 
 
   private
 
   def order_params
-    params.require(:order).permit(:name, :email, :street1, :street2, :city, :state, :zip, :weight, :height, :length, :width)
+    params.require(:order).permit(:name, :email, :street1, :street2, :city, :state, :country, :zip, :weight, :height, :length, :width, :hand_deliver)
   end
 end
 

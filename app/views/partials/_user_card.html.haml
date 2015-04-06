@@ -1,0 +1,11 @@
+%li.user-card
+  .user-img
+    %div{style: "background: url( '#{ attachment_url user, :image_1, :fill, 250, 200 }' ), no-repeat center; background-size: cover"}
+  .user-content
+    %h4= user.name
+    -if user.contactable?
+      %ul
+        %li= user.phone
+        %li
+          =link_to user.email, "mailto: 'jeffsee.55@gmail.com'", target: "_blank"
+    = user.bio

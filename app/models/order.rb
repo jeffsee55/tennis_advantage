@@ -3,7 +3,6 @@ class Order < ActiveRecord::Base
   has_many :events, class_name: "OrderEvent"
 
   monetize :sub_total
-  monetize :tax
   monetize :shipping_rate
   monetize :total
 
@@ -11,17 +10,17 @@ class Order < ActiveRecord::Base
 
   attr_accessor :weight, :length, :width, :height
 
-  STATES = %w[initialized pending purchased shipped delivered]
-  OHIO_SALES_TAX_RATE = 0.0575
+  SHIPPING_RATE = 8.to_money
+  STATES = %w[initialized pending purchased shipped completed]
   COMPANY_ADDRESS = {
-        name: "Company",
-        street1: '164 Townsend Street',
-        street2: 'Unit 1',
-        city: 'San Francisco',
-        state: 'CA',
-        zip: '94107'
+        name: "Gregson's Tennis Advantage",
+        street1: '11 Parkwood Pl',
+        city: 'Sydney',
+        state: 'NSW',
+        zip: '2151',
+        country: 'Australia'
       }
-  delegate :initialized?, :pending?, :purchased?, :shipped?, :delivered?, to: :current_state
+  delegate :initialized?, :pending?, :purchased?, :shipped?, :completed?, to: :current_state
 
   def current_state
     (events.last.try(:state) || STATES.first).inquiry
@@ -32,24 +31,17 @@ class Order < ActiveRecord::Base
       email: order[:email],
       source: stripe_token
     ).id
-    puts "Stripe created"
     self.attributes= line_items.dimensions_and_weight
-    shipment = EasyPost::Shipment.create(
-      to_address: self.full_address,
-      from_address: COMPANY_ADDRESS,
-      parcel: self.dimensions_and_weight
-    )
-    shipment.to_address.verify
-    puts shipment.to_address
-    self.shipment_id = shipment.id
-
-    puts "EasyPost created"
-
+    unless self.hand_deliver?
+      shipment = EasyPost::Shipment.create(
+        to_address: self.full_address,
+        from_address: COMPANY_ADDRESS,
+        parcel: self.dimensions_and_weight
+      )
+      self.shipment_id = shipment.id
+    end
     self.save
-    puts "Order saved"
-
     events.create! state: "pending"
-    puts "Order Event saved"
   end
 
   def purchase
@@ -60,27 +52,41 @@ class Order < ActiveRecord::Base
       metadata: {
         order_id: self.id,
         sub_total: self.sub_total,
-        tax: self.tax,
         shipping_rate:self.shipping_rate
       }
     ).id
     self.save
 
-    events.create! state: "purchased"
+    if self.hand_deliver?
+      events.create! state: "completed"
+    else
+      events.create! state: "purchased"
+    end
   end
 
   def ship
     shipment = EasyPost::Shipment.retrieve(shipment_id)
-    shipment.buy(rate: shipment.lowest_rate)
-    events.create! state: "shipped"
+    begin
+      shipment.buy(rate: shipment.lowest_rate)
+    rescue EasyPost::Error
+      events.create! state: "shipped"
+    end
   end
 
   def deliver
-    events.create! state: "delivered"
+    events.create! state: "completed"
   end
 
   def customer
-    Stripe::Customer.retrieve(self.stripe_customer_id) if self.customer_id
+    Stripe::Customer.retrieve(self.stripe_customer_id) if self.stripe_customer_id
+  end
+
+  def card
+    if charge_id
+      charge.source
+    else
+      customer.sources.first
+    end
   end
 
   def shipment
@@ -91,12 +97,16 @@ class Order < ActiveRecord::Base
     Stripe::Charge.retrieve(self.charge_id) if self.charge_id
   end
 
-  def tax
-    self.sub_total * OHIO_SALES_TAX_RATE
-  end
-
   def shipping_rate
-    self.shipment.lowest_rate.rate.to_money
+    if hand_deliver?
+      return 0
+    else
+      begin
+        shipment.lowest_rate
+      rescue EasyPost::Error
+        SHIPPING_RATE
+      end
+    end
   end
 
   def sub_total
@@ -108,7 +118,7 @@ class Order < ActiveRecord::Base
   end
 
   def total
-    return self.sub_total + self.tax + self.shipping_rate
+    return self.sub_total + self.shipping_rate
   end
 
   def total_cents
@@ -122,7 +132,8 @@ class Order < ActiveRecord::Base
       street2: street2 || "136",
       city: city || "Greenville",
       state: state || "SC",
-      zip: zip || "29617"
+      zip: zip || "29617",
+      counry: country || "US"
     }
   end
 
@@ -160,13 +171,25 @@ class Order < ActiveRecord::Base
     if current_state == "shipped"
       return "success-bg"
     end
-    if current_state == "delivered"
+    if current_state == "completed"
       return "success-bg"
     end
   end
 
   def send_email
     SiteMailer.new_order(self)
+  end
+
+  def delivery_method
+    if self.hand_deliver?
+      "Hand Deliver"
+    else
+      begin
+        "#{self.shipment.lowest_rate.carrier} | #{self.shipment.lowest_rate.service}"
+      rescue EasyPost::Error
+        "Ship"
+      end
+    end
   end
 
   def icon
@@ -176,7 +199,7 @@ class Order < ActiveRecord::Base
     if current_state == "shipped"
       return "fa-truck"
     end
-    if current_state == "delivered"
+    if current_state == "completed"
       return "fa-check"
     end
   end
@@ -190,7 +213,20 @@ class Order < ActiveRecord::Base
       link: Rails.application.routes.url_helpers.admin_order_path(self),
       link_text: "View Order",
       secondary: self.current_state.capitalize,
-      details: self.events.last.created_at
+      details: self.delivery_method
+    }
+  end
+
+  def to_public_local_list_item
+    {
+      img: nil,
+      color: self.color,
+      icon: 'fa-check',
+      primary: "Order ##{ self.id}",
+      link: "javascript:void(0)",
+      link_text: "$#{self.total}",
+      secondary: "Status: #{self.current_state.capitalize}",
+      details: self.delivery_method
     }
   end
 end

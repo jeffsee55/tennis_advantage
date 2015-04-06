@@ -1,23 +1,7 @@
-%table.list-table
-  -@line_items.each do |line_item|
-    =render partial: "partials/list_item", locals: line_item.to_local_list_item
-  %li.order-summary
-    %ul.billing
-      %li.bold Billing Information
-      %li --
-    %ul.shipping
-      %li.bold Billing Information
-      %li --
-    %table.totals
-      %tr
-        %td Sub Total
-        %td= @line_items.sub_total
-      %tr
-        %td Shipping
-        %td --
-      %tr
-        %td Tax
-        %td --
-      %tr
-        %td.bold Total
-        %td.bold --
+=render partial: "partials/hero", locals: { page: @page }
+%h1 Summary
+%hr.thick
+%table.list-table.summary-item
+  =render partial: "partials/list_item",
+    locals: @order.to_public_local_list_item
+

@@ -5,10 +5,15 @@
     =fa_icon "chevron-right"
   %ul
     -if product.image_1_id?
-      %li{style: "background: url( #{ attachment_url product, :image_1, :fill, 500, 300 } ), no-repeat center; background-size: cover"}
+      %li
+        =image_tag attachment_url product, :image_1
     -if product.image_2_id?
-      %li{style: "background: url( #{ attachment_url product, :image_2, :fill, 500, 300 } ), no-repeat center; background-size: cover"}
+      %li
+        =image_tag attachment_url product, :image_2
     -if product.image_3_id?
-      %li{style: "background: url( #{ attachment_url product, :image_3, :fill, 500, 300 } ), no-repeat center; background-size: cover"}
+      %li
+        =image_tag attachment_url product, :image_3
     -if product.image_4_id?
-      %li{style: "background: url( #{ attachment_url product, :image_4, :fill, 500, 300 } ), no-repeat center; background-size: cover"}
+      %li
+        =image_tag attachment_url product, :image_1
+

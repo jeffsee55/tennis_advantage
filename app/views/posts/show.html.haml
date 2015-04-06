@@ -1,7 +1,11 @@
 .page-content
   .content-block
-    =image_tag attachment_url(@post, :image_1, :fill, 600, 400)
+    -if @post.image_1_id?
+      =image_tag attachment_url(@post, :image_1, :fill, 600, 400)
+    -else
+      =image_tag attachment_url(slide_image, :image, :fill, 600, 400)
   .content-block
     %h4= @post.title
     %small= "#{time_ago_in_words @post.updated_at} ago"
+    %br
     =@post.body.html_safe

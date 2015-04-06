@@ -1,8 +1,12 @@
 =content_for :hero do
   .hero
+    .overlay
     .text
       = @page.content_a.html_safe
-      %button.primary Action
+      .buttons
+        =button_to "About Us", about_path, method: :get, class: "btn-outline-white"
+        =button_to "Our Programs", programs_path, method: :get, class: "btn-outline-white"
+        =button_to "Shop", products_path, method: :get, class: "btn-outline-white"
     .hero-slider
       .product-slider
         %a.prev{ href: "javascript:void(0)" }
@@ -12,24 +16,25 @@
         %ul
           -@slide_images.each do |slide_image|
             %li{style: "background: url( #{ attachment_url slide_image, :image, :fill, 1100, 500 } ), no-repeat center; background-size: cover"}
-= render partial: "partials/products_list", locals: { products: @products }
-%hr.thick
-.page-content
-  .content-block
-    =@page.content_b.html_safe
-  .content-block
-    -if @page.content_c.present?
+.flex-boxes
+  .flex-box.flex-box-big{:href => "javascript:void(0)"}
+    -#%i.fa.fa-trash.fa-3x
+    %h3= @post.title
+    =truncate @post.body.html_safe, length: 300
+    =link_to "Read More", @post
+  -if @page.content_b?
+    .flex-box{:href => "javascript:void(0)"}
+      -#%i.fa.fa-trash.fa-3x
+      =@page.content_b.html_safe
+  -if @page.content_c?
+    .flex-box{:href => "javascript:void(0)"}
       =@page.content_c.html_safe
-    -else
-      %img{src: 'https://ununsplash.imgix.net/photo-1414604582943-2fd913b3cb17?fit=crop&fm=jpg' }
-.page-content
-  %h3 Latest News
-  %hr.thick
-  .content-block
-    =image_tag attachment_url(@post, :image_1, :fill, 600, 400)
-  .content-block
-    %h4= @post.title
-    %small= "#{time_ago_in_words @post.updated_at} ago"
-    %br
-    =truncate(strip_tags(@post.body.html_safe), length: 500)
-    =button_to "Read more", post_path(@post), method: :get
+  -if @page.content_d?
+    .flex-box{:href => "javascript:void(0)"}
+      =@page.content_d.html_safe
+  -if @page.content_e?
+    .flex-box.flex-box-big{:href => "javascript:void(0)"}
+      =@page.content_e.html_safe
+  -if @page.content_f?
+    .flex-box{:href => "javascript:void(0)"}
+      =@page.content_f.html_safe

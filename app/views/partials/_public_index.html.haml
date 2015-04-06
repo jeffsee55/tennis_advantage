@@ -1,0 +1,5 @@
+.container.clear-nav
+  -resources.each do |resource|
+    %table.list-table
+      =render partial: "partials/list_item",
+        locals: resource.to_public_local_list_item

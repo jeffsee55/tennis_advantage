@@ -35,7 +35,10 @@ gem "wysiwyg-rails"
 gem 'kaminari', '~> 0.16.3'
 gem 'clearance', '~> 1.8.1'
 gem 'mandrill-api', '~> 1.0.53', require: "mandrill"
-gem 'rails_12factor'
+gem 'capistrano', '~> 3.1.0'
+gem 'capistrano-bundler', '~> 1.1.2'
+gem 'capistrano-rails', '~> 1.1.1'
+gem 'capistrano-rbenv', github: "capistrano/rbenv"
 
 group :development do
   gem "bundler-audit"
@@ -65,5 +68,6 @@ group :test do
 end
 
 group :staging, :production do
+  gem 'rails_12factor'
 end
 

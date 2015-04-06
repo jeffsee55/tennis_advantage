@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :messages, only: :create
   resources :pages
   resources :posts
+  resources :programs, only: [:show, :index]
   get "home", to: "pages#home", as: "home"
   get "about", to: "pages#about", as: "about"
   get "contact", to: "pages#contact", as: "contact"
@@ -25,6 +26,8 @@ Rails.application.routes.draw do
     resources :products
     resources :pages, only: [:index, :edit, :update]
     resources :posts
+    resources :programs
+    resources :users
     resources :orders do
       member do
         patch "ship", to: "orders#ship", as: "ship"

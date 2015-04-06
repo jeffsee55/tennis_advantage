@@ -13,25 +13,27 @@
 
   .tab-link {
     display: block;
-    padding-right: 1em;
+    padding: 1em;
 
     @include media($large-screen) {
       display: inline-block;
+      padding: 2em;
     }
   }
 
   .is-active {
-    color: #ff0000;
+    background: lighten($light-gray, 10);
   }
 
   .tab-content {
     display: none;
     width: 100%;
-    padding: 2em;
+    padding: 1em;
     background: lighten($light-gray, 10);
 
     @include media($large-screen) {
       float: left;
+      padding: 2em;
     }
   }
 }

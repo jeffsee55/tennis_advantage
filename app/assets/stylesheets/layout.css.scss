@@ -20,7 +20,7 @@ div.page-content {
   }
 
   .content-block {
-    min-height: 300px;
+    min-height: 200px;
     overflow: hidden;
 
     @include media($medium-screen) {
@@ -37,7 +37,10 @@ div.page-content {
 }
 
 .half-column {
-  @include span-columns(6);
+
+  @include media($medium-screen) {
+    @include span-columns(6);
+  }
 }
 
 .center-form {

@@ -11,7 +11,7 @@ body {
     top: 0;
     right: 0;
     left: 0;
-    z-index: 10;
+    z-index: 1000;
     color: white;
   }
 
@@ -49,14 +49,25 @@ input{
   width: 100%;
 }
 
-input.btn-outline-red {
-  border: 1px solid $red;
+input.btn-outline-green {
+  border: 1px solid $green;
   background-color: transparent;
-  color: $red;
+  color: $green;
 
   &:hover {
     background-color: transparent;
-    color: darken($red, 15);
+    color: darken($green, 15);
+  }
+}
+
+input.btn-outline-white {
+  border: 1px solid white;
+  background-color: transparent;
+  color: white;
+
+  &:hover {
+    background-color: transparent;
+    color: darken(white, 15);
   }
 }
 
@@ -78,7 +89,6 @@ input.btn-outline-red {
   position: relative;
 
   @include media($large-screen) {
-    padding: 0;
   }
 }
 
@@ -100,6 +110,10 @@ input.btn-outline-red {
 
 .danger-bg {
   background-color: $red;
+}
+
+.orange-bg {
+  background-color: $orange;
 }
 
 [id^="content-"] {

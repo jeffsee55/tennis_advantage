@@ -1,20 +1,4 @@
-.page-content
-  .content-block
-    =@page.content_a.html_safe
-  .content-block
-    -if @page.content_b.present?
-      =@page.content_b.html_safe
-    -else
-      %img{src: 'https://ununsplash.imgix.net/photo-1414604582943-2fd913b3cb17?fit=crop&fm=jpg' }
-.page-content
-  .content-block
-    -if @page.content_c.present?
-      =@page.content_c.html_safe
-    -else
-      %img{src: 'https://unsplash.imgix.net/photo-1415033523948-6c31d010530d?q=75&fm=jpg&s=559455b1ad675f8dc95a04528044f870' }
-  .content-block
-    -if @page.content_d.present?
-      =@page.content_d.html_safe
+=render partial: "partials/hero", locals: { page: @page }
+%h1 OUR STAFF
 %hr.thick
-%h1 OUR PRODUCTS
-= render partial: "partials/products_list", locals: { products: @products }
+= render partial: "partials/user_list", locals: { users: @users }

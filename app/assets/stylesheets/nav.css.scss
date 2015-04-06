@@ -1,12 +1,26 @@
 .nav {
   @include display(flex);
-  @include align-items(center);
   @include justify-content(space-between);
   top: 0; right: 0; left: 0;
   z-index: 20;
 
   .nav-logo {
-    width: 200px;
+    width: 1px;
+    height:1px;
+
+    svg {
+      width: 60px;
+      right: 0;
+      position: relative;
+      z-index: 100;
+      @include media($medium-screen) {
+        width: 100px;
+      }
+
+      #green * {
+        fill: darken($green, 15);
+      }
+    }
   }
 
   #mobile-menu-open, #mobile-menu-close{
@@ -14,14 +28,12 @@
     position: absolute;
     top: 1em;
     right: 1em;
+    z-index: 50;
+    color: $green;
 
     @include media($medium-screen) {
       display: none;
     }
-  }
-
-  #mobile-menu-close {
-    color: $red;
   }
 
   .nav-menu {
@@ -31,7 +43,7 @@
     @include justify-content(center);
     position: fixed;
     top: 0; right: 0; left: 0; bottom: 0;
-    background: transparentize(white, 0.2);
+    background: transparentize($blue, 0.1);
     z-index: 100;
 
     @include media($medium-screen) {
@@ -43,9 +55,9 @@
 
     ul {
       float: none;
-      @include align-self(center);
 
       @include media($medium-screen) {
+        @include display(flex);
         float: right;
       }
     }
@@ -57,12 +69,16 @@
       float: none;
 
       @include media($medium-screen) {
+        @include align-self(center);
         padding: 2em 1em;
         font-size: 1em;
         float: left;
         text-align: right;
       }
 
+      input {
+        margin-bottom: 0;
+      }
     }
   }
 }
@@ -70,9 +86,6 @@
 .pages-home .nav {
   position: absolute;
   color: white;
-  text, polyline {
-    fill: white;
-  }
   a {
     color: white;
     font-weight: bold;

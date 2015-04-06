@@ -1,0 +1,35 @@
+.user-list {
+  @include clearfix();
+  padding: 2em 0;
+
+  & > li:nth-child(even) {
+    @include omega();
+  }
+  .user-card {
+    background: $light-gray;
+    border-radius: $base-border-radius;
+    overflow: hidden;
+    margin-bottom: 1em;
+
+    @include media($medium-screen) {
+      @include span-columns(6);
+    }
+    @include media($large-screen) {
+      @include span-columns(3);
+    }
+    .user-content {
+      position: relative;
+      padding: 1em;
+      min-height: 150px;
+    }
+  }
+}
+
+.user-img {
+  min-height: 200px;
+  position: relative;
+
+  & > div {
+    min-height: 200px;
+  }
+}

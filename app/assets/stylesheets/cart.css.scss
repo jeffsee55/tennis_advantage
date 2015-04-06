@@ -52,34 +52,49 @@ button.open-form {
   border-radius: 2px;
 }
 
-.street {
+.order_hand_deliver {
 
-  & > div {
+  label {
+    margin-right: 10px;
+    display: inline-block;
+  }
 
-
-    &:first-child {
-      @include span-columns(9);
-    }
-    &:last-child {
-      @include span-columns(3);
-    }
+  input {
+    width: auto;
   }
 }
 
+.shipping {
 
-.location {
+  .street {
 
-  & > div {
+    & > div {
 
 
-    &:first-child {
-      @include span-columns(6);
+      &:first-child {
+        @include span-columns(9);
+      }
+      &:last-child {
+        @include span-columns(3);
+      }
     }
-    &:nth-child(2) {
-      @include span-columns(3);
-    }
-    &:last-child {
-      @include span-columns(3);
+  }
+
+
+  .location {
+
+    & > div {
+
+
+      &:first-child {
+        @include span-columns(6);
+      }
+      &:nth-child(2) {
+        @include span-columns(3);
+      }
+      &:last-child {
+        @include span-columns(3);
+      }
     }
   }
 }
@@ -101,3 +116,4 @@ button.open-form {
     }
   }
 }
+

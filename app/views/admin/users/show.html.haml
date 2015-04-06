@@ -1,0 +1,32 @@
+.container.clear-nav
+  =button_to "All Users", admin_users_path, method: :get, class: "right"
+  =simple_form_for [:admin, @user] do |f|
+    %ul.accordion-tabs
+      %li.tab-header-and-content
+        %a.is-active.tab-link{:href => "javascript:void(0)"}
+          %h2 Summary
+        .tab-content
+          =f.input :name
+          =f.input :email
+          =f.input :phone
+          =f.input :bio
+      %li.tab-header-and-content
+        %a.tab-link{:href => "javascript:void(0)"}
+          %h2 Image
+        .tab-content
+          .half-column
+            -if @user.image_id?
+              .post-image{style: "background: url( #{ attachment_url @user, :image, :fill, 500, 300 } ), no-repeat center; background-size: cover"}
+            -else
+              .post-image{style: "background: url( 'http://placehold.it/500x300&text=No%20Image' ), no-repeat center; background-size: cover"}
+          .half-column
+            .inline-input
+              -if @user.image_id?
+                #image_1_thumb.image_thumb{style: "background: url( #{ attachment_url @user, :image, :fill, 75, 75 } ), no-repeat center; background-size: cover"}
+              -else
+                .image_thumb
+                  =fa_icon "upload"
+              =f.attachment_field :image
+    =f.submit "Save", class: "right"
+  -if @user.persisted?
+    =button_to "Delete", [:admin, @user], class: "btn-outline-red", method: :delete, data: { confirm: "Are you sure?" }

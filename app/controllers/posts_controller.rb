@@ -6,6 +6,7 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.all
+    @page = Page.find_by_slug("posts")
   end
 
 end

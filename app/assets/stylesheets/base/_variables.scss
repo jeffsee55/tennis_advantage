@@ -1,8 +1,8 @@
 // Typography
 $sans-serif: $helvetica;
 $serif: $georgia;
-$base-font-family: "Khula" $helvetica;
-$header-font-family: "Montserrat" $base-font-family;
+$base-font-family: "Lato" $helvetica;
+$header-font-family: "Lato" $base-font-family;
 
 // Font Sizes
 $base-font-size: 1em;
@@ -23,9 +23,10 @@ $base-spacing: $base-line-height * 1em;
 $base-z-index: 0;
 
 // Colors
-$blue: #91BBD5;
+$blue: #47425C;
 $green: #9ED7C4;
 $yellow: #EDF3AB;
+$orange: #ECCC8D;
 $red: #E97E6C;
 $dark-gray: #333;
 $medium-gray: #999;
@@ -36,7 +37,7 @@ $base-background-color: white;
 
 // Font Colors
 $base-font-color: $dark-gray;
-$base-accent-color: $red;
+$base-accent-color: $green;
 $base-background-color: #fff;
 $base-font-color: $dark-gray;
 $base-link-color: $medium-gray;
@@ -44,7 +45,7 @@ $action-color: $base-accent-color;
 
 
 // Link Colors
-$base-link-color: $base-accent-color;
+$base-link-color: darken($base-accent-color, 10);
 $hover-link-color: darken($base-accent-color, 15);
 $base-button-color: $base-link-color;
 $hover-button-color: $hover-link-color;

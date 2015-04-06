@@ -12,7 +12,7 @@ class PagesController < ApplicationController
 
   def about
     @page = Page.find_by_slug("about")
-    @products = Product.all
+    @users = User.all
   end
 
   def contact

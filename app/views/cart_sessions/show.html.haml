@@ -1,5 +1,4 @@
-%h3 CART
-%hr.thick
+=render partial: "partials/hero", locals: { page: @page }
 %table.list-table
   -@line_items.each do |line_item|
     =render partial: "partials/list_item", locals: line_item.to_local_list_item
@@ -8,7 +7,7 @@
     %li.bold Billing Information
     %li --
   %ul.shipping
-    %li.bold Billing Information
+    %li.bold Shipping Information
     %li --
   %table.totals
     %tr

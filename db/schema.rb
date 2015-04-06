@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150330224429) do
+ActiveRecord::Schema.define(version: 20150406021655) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(version: 20150330224429) do
     t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "subject"
   end
 
   create_table "order_events", force: true do |t|
@@ -76,6 +77,8 @@ ActiveRecord::Schema.define(version: 20150330224429) do
     t.float    "length"
     t.float    "width"
     t.string   "email"
+    t.boolean  "hand_deliver"
+    t.string   "country"
   end
 
   create_table "pages", force: true do |t|
@@ -101,7 +104,6 @@ ActiveRecord::Schema.define(version: 20150330224429) do
 
   create_table "products", force: true do |t|
     t.string   "name"
-    t.string   "description"
     t.integer  "weight"
     t.integer  "length"
     t.integer  "width"
@@ -115,6 +117,24 @@ ActiveRecord::Schema.define(version: 20150330224429) do
     t.string   "image_3_id"
     t.string   "image_4_id"
     t.integer  "inventory",      default: 12
+    t.text     "description"
+    t.string   "category"
+  end
+
+  create_table "program_categories", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "programs", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "image_1_id"
+    t.string   "category",    default: "Lessons"
   end
 
   create_table "slide_images", force: true do |t|
@@ -135,6 +155,11 @@ ActiveRecord::Schema.define(version: 20150330224429) do
     t.string   "encrypted_password", limit: 128, null: false
     t.string   "confirmation_token", limit: 128
     t.string   "remember_token",     limit: 128, null: false
+    t.string   "name"
+    t.string   "phone"
+    t.string   "bio"
+    t.string   "image_1_id"
+    t.boolean  "contactable"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", using: :btree

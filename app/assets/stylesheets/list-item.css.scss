@@ -50,3 +50,32 @@ table.list-table {
     width: 20%;
   }
 }
+
+.programs-index {
+
+  .primary {
+    width: 30%;
+  }
+
+  td.secondary {
+    text-align: left;
+    padding: 1em 2em;
+    width: 50%;
+  }
+
+  .details {
+    display: none;
+  }
+}
+
+table.list-table.summary-item {
+  tr {
+    background: $green;
+    color: white;
+
+    a {
+      color: white;
+    }
+  }
+}
+

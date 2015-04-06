@@ -2,6 +2,7 @@ class CartSessionsController < ApplicationController
   before_filter :verify_cart_items, only: :show
   def show
     @line_items = cart_session.line_items
+    @page = Page.find_by_slug("cart")
   end
 
   def destroy

@@ -5,12 +5,19 @@
   %ul.billing
     %li.bold Billing Information
     %li= order.name
-    %li **** **** **** **89
+    %li
+      %i{ class: "fa fa-cc-#{order.card.brand.downcase}" }
+      ="#{order.card.last4}"
+    %li= "#{order.card.exp_month} / #{order.card.exp_month}"
   %ul.shipping
-    %li.bold Shipping Information
-    %li= order.name
-    %li= "#{ order.street1 }, #{ order.street2 }"
-    %li= "#{ order.city }, #{ order.state} #{ order.zip }"
+    -if order.hand_deliver?
+      %li.bold Shipping Information
+      %li N/A
+    -else
+      %li.bold Shipping Information
+      %li= order.name
+      %li= "#{ order.street1 }, #{ order.street2 }"
+      %li= "#{ order.city }, #{ order.state} #{ order.zip }"
   %table.totals
     %tr
       %td Sub Total
@@ -18,9 +25,6 @@
     %tr
       %td Shipping
       %td= humanized_money_with_symbol order.shipping_rate
-    %tr
-      %td Tax
-      %td= humanized_money_with_symbol order.tax
     %tr
       %td.bold Total
       %td.bold= humanized_money_with_symbol order.total

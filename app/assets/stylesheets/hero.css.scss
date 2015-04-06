@@ -4,38 +4,54 @@
   @include justify-content(center);
   $hero-height: 70vh;
   position: relative;
-  height: $hero-height;
+  min-height: 70vh;
+  max-height: 800px;
   background: $dark-gray;
   overflow: hidden;
   padding: 2em;
+  margin-bottom: 2em;
 
   .text {
     @include align-self(flex-end);
+
     color: white;
     text-align: center;
     position: relative;
     z-index: 10;
 
-    h1 {
-      font-size: 2.75em;
+    @include media($medium-screen) {
+      h1 {
+        font-size: 2.75em;
+      }
+      h2 {
+        font-size: 2.25em;
+      }
+      h3 {
+        font-size: 2em;
+      }
+      h4 {
+        font-size: 1.75em;
+      }
+      h5 {
+        font-size: 1.5em;
+      }
+      h6 {
+        font-size: 1.25em;
+      }
+      p {
+        font-size: 1.25em;
+      }
     }
-    h2 {
-      font-size: 2.25em;
-    }
-    h3 {
-      font-size: 2em;
-    }
-    h4 {
-      font-size: 1.75em;
-    }
-    h5 {
-      font-size: 1.5em;
-    }
-    h6 {
-      font-size: 1.25em;
-    }
-    p {
-      font-size: 1.25em;
+  }
+
+  .buttons {
+    margin-top: 20px;
+
+    @include media($medium-screen) {
+
+      form {
+        @include span-columns(4);
+      }
     }
   }
 
@@ -43,15 +59,57 @@
     position: absolute;
     top: 0; right: 0; left: 0; bottom: 0;
     .product-slider {
-      height: $hero-height;
+      height: 100%;
 
       ul {
-        height: $hero-height;
+        height: 100%;
         li {
-          height: $hero-height;
+          height: 100%;
+        }
+      }
+    }
+  }
+
+  .overlay {
+    position: absolute;
+    top: 0; right: 0; left: 0; bottom: 0;
+    @include background(linear-gradient(45deg, transparentize($blue, 0.2), transparentize($green, 0.5)));
+    z-index: 10;
+  }
+}
+
+.page-hero {
+  @include justify-content(flex-start);
+  height: auto;
+  min-height: 0;
+
+  .text {
+    @include outer-container();
+    text-align: left;
+    width: 100%;
+    padding-top: 50px;
+
+    @include media($medium-screen) {
+      h1 {
+        font-size: 4em;
+      }
+      p {
+        font-size: 1em;
+      }
+    }
+  }
+  .hero-slider {
+    position: absolute;
+    top: 0; right: 0; left: 0; bottom: 0;
+    .product-slider {
+      height: 100%
+
+      ul {
+        height: 100%
+        li {
+          height: 100%;
         }
       }
     }
   }
 }
-

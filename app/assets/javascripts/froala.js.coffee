@@ -3,3 +3,5 @@ $ ->
     inlineMode: true
   $("#post_body").editable
     inlineMode: true
+  $("#program_description").editable
+    inlineMode: true

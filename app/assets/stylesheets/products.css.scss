@@ -14,6 +14,18 @@
     }
   }
 
+  & > li:nth-child(4n) {
+
+    @include media($medium-screen) {
+
+      @include omega();
+    }
+    @include media($large-screen) {
+
+      @include omega();
+    }
+  }
+
   .product-card {
     background: $light-gray;
     border-radius: $base-border-radius;
@@ -29,16 +41,33 @@
     div.product-content {
       position: relative;
       padding: 1em;
+      min-height: 120px;
+
+      a {
+        color: $blue;
+
+        &:hover {
+          color: darken($blue, 10);
+        }
+      }
 
       div.product-price {
+        @include display(flex);
+        @include justify-content(center);
+        @include align-items(center);
         position: absolute;
-        top: -30px;
+        top: -40px;
         right: 10px;
-        padding: 15px;
+        width: 60px;
+        height: 60px;
         border-radius: 50%;
         border: 3px solid $light-gray;
-        background: $red;
+        background: $blue;
         color: white;
+
+        div {
+        }
+
 
         &:nth-child(2n) {
           @include omega();
@@ -72,7 +101,7 @@
   }
 
   ul {
-    min-height: 200px;
+    min-height: 250px;
     position: relative;
 
     li {
