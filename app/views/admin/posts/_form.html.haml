@@ -28,5 +28,3 @@
     =f.submit "Save", class: "right"
   -if post.persisted?
     =button_to "Delete", [:admin, post], class: "btn-outline-red", method: :delete, data: { confirm: "Are you sure?" }
-
-=render "froala_key"

@@ -19,7 +19,7 @@
 .flex-boxes
   .flex-box.flex-box-big{:href => "javascript:void(0)"}
     -#%i.fa.fa-trash.fa-3x
-    %h3= @post.title
+    %h3= @post.title.upcase
     =truncate @post.body.html_safe, length: 300
     =link_to "Read More", @post
   -if @page.content_b?
