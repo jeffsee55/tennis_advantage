@@ -54,4 +54,4 @@
               =f.attachment_field :image_4
     =f.submit "Save", class: "right"
   -if product.persisted?
-    =button_to "Delete", [:admin, product], class: "btn-outline-red", method: :delete, data: { confirm: "Are you sure?" }
+    =button_to "Delete", [:admin, product], class: "btn-outline-green", method: :delete, data: { confirm: "Are you sure?" }

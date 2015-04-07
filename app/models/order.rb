@@ -7,6 +7,7 @@ class Order < ActiveRecord::Base
   monetize :total
 
   include Scopes
+  default_scope -> { order('created_at DESC') }
 
   attr_accessor :weight, :length, :width, :height
 

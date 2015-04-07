@@ -1,5 +1,6 @@
 class Page < ActiveRecord::Base
   include Scopes
+  scope :alphabetical, -> { order('title ASC') }
 
   def to_local_list_item
     {

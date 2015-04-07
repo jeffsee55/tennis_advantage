@@ -9,6 +9,7 @@ class Product < ActiveRecord::Base
   monetize :price_cents
 
   include Scopes
+  scope :by_category, -> { order('category DESC') }
 
   def to_local_list_item
     {

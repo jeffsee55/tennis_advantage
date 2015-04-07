@@ -2,7 +2,7 @@ class Admin::ProductsController < AdminController
   before_action :set_admin_product, only: [:show, :edit, :update, :destroy]
 
   def index
-    @products = Product.all.page params[:page]
+    @products = Product.all.by_category.page params[:page]
   end
 
   def show

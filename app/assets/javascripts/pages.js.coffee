@@ -1,11 +1,11 @@
 $ ->
-  $("[id^=content-]").hover ->
+  $("svg > [id^=content-]").hover ->
     $(@).find("rect").toggleClass("svg-hover")
-  $("[id^=content-]").click ->
-    id = $(@).attr('id')
-    input = id.substr(id.length - 1)
-    console.log input
-    $("#content_#{input} input").click()
+    $(@).click ->
+      id = $(@).attr('id')
+      input = id.substr(8)[0]
+      console.log input
+      $("[id^=content_#{input}] input").click()
 
   $("#input_a").on "change", ->
     if $(this).is(":checked")
@@ -22,5 +22,5 @@ $ ->
     e.stopPropagation()
     return
 
-  $("#content-slideshow").click ->
+  $("svg > #content-slideshow").click ->
     window.location = "/admin/slide_images"

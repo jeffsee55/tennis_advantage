@@ -11,7 +11,7 @@ class Admin::PagesController < AdminController
   end
 
   def index
-    @pages = Page.all.page params[:page]
+    @pages = Page.all.alphabetical.page params[:page]
   end
 
   private

@@ -1,6 +1,7 @@
 class Program < ActiveRecord::Base
   attachment :image_1
   include Scopes
+  scope :by_category, -> { order('category DESC') }
 
   CATEGORIES = ["ANZ Hotshots", "Competitions", "Lessons"]
 
