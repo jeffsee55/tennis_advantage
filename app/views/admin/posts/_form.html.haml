@@ -29,6 +29,6 @@
   -if post.persisted?
     =button_to "Delete", [:admin, post], class: "btn-outline-red", method: :delete, data: { confirm: "Are you sure?" }
 
-=content_for :javascript do
+=content_for :froala_key do
   :javascript
     $.Editable.DEFAULTS.key = #{ENV['FROALA_KEY']};
