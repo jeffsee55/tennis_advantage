@@ -2,7 +2,8 @@ class LineItem < ActiveRecord::Base
   belongs_to :product
   belongs_to :order
 
-  monetize :total_cents
+  register_currency :aud
+  monetize :total_cents, :with_currency => :aud
 
   default_scope{order("created_at DESC")}
 

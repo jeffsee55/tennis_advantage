@@ -2,9 +2,10 @@ class Order < ActiveRecord::Base
   has_many :line_items
   has_many :events, class_name: "OrderEvent"
 
-  monetize :sub_total
-  monetize :shipping_rate
-  monetize :total
+  register_currency :aud
+  monetize :sub_total, :with_model_currency => :aud
+  monetize :shipping_rate, :with_model_currency => :aud
+  monetize :total, :with_model_currency => :aud
 
   include Scopes
   default_scope -> { order('created_at DESC') }
@@ -48,7 +49,7 @@ class Order < ActiveRecord::Base
   def purchase
     self.charge_id = Stripe::Charge.create(
       amount: self.total_cents,
-      currency: "usd",
+      currency: "aud",
       customer: self.stripe_customer_id,
       metadata: {
         order_id: self.id,
@@ -57,6 +58,8 @@ class Order < ActiveRecord::Base
       }
     ).id
     self.save
+    SiteMailer.new_order(self)
+    SiteMailer.order_confirmation(self)
 
     if self.hand_deliver?
       events.create! state: "completed"
@@ -183,13 +186,21 @@ class Order < ActiveRecord::Base
 
   def delivery_method
     if self.hand_deliver?
-      "Hand Deliver"
+      "Delivery method: Hand Deliver"
     else
       begin
         "#{self.shipment.lowest_rate.carrier} | #{self.shipment.lowest_rate.service}"
       rescue EasyPost::Error
-        "Ship"
+        "Delivery method: Shipment"
       end
+    end
+  end
+
+  def delivery_info
+    if hand_deliver?
+      "We will be in touch shortly with arrangements for hand delivery."
+    else
+      "You should receive your shipment in 7 to 10 business days. If you have not received it after 10 days, please contact us at sg370@bigpond.com.au"
     end
   end
 

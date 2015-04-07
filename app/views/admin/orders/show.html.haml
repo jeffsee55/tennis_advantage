@@ -1,14 +1,13 @@
 .container.clear-nav
+  %h3 Status
+  %table.list-table
+    =render partial: "partials/list_item",
+      locals: @order.to_local_list_item
   %ul.accordion-tabs
     %li.tab-header-and-content
       %a.is-active.tab-link{:href => "javascript:void(0)"}
         %h2 Summary
       .tab-content
-        %h3 Status
-        %table.list-table
-          =render partial: "partials/list_item",
-            locals: @order.to_local_list_item
-        %h3 Order Summary
         =render partial: "orders/order_summary", locals: { order: @order }
     -unless @order.hand_deliver?
       %li.tab-header-and-content
@@ -17,39 +16,30 @@
         .tab-content
           .clear
             .half-column
-              %h3 Shipping Information
               %ul
+                %li
+                  %h3= @order.name
+                %li= mail_to @order.email, nil, target: '_newtab'
+                %h5 Shipping Information
                 %li= @order.name
                 %li= "#{ @order.street1 }, #{ @order.street2 }"
                 %li= "#{ @order.city }, #{ @order.state} #{ @order.zip }"
-              %hr.thick
+            -#.half-column
+              -#%h3 Package Information
+              -#=simple_form_for [:admin, @order], url: recalculate_shipping_admin_order_path do |f|
+                -#=f.input :weight, label: false, placeholder: @order.weight
+                -#=f.input :height, placeholder: @order.height
+                -#=f.input :length, placeholder: @order.length
+                -#=f.input :width, placeholder: @order.width
+                -#=f.submit "Recalculate Shipping"
+            .half-column
               %h3 Rate
               %ul
                 %li=@order.delivery_method
                 %li="$#{ @order.shipping_rate }"
                 -if @order.shipment.postage_label
                   =button_to "Print Postage Label", @order.shipment.postage_label.label_url, method: :get, target: "_blank"
+                -elsif @order.current_state == "shipped"
+                  %strong Shipped
                 -else
                   =button_to "Mark Shipped", ship_admin_order_path, method: :patch
-            .half-column
-              %h3 Package Information
-              =simple_form_for [:admin, @order], url: recalculate_shipping_admin_order_path do |f|
-                =f.input :weight, label: false, placeholder: @order.weight
-                =f.input :height, placeholder: @order.height
-                =f.input :length, placeholder: @order.length
-                =f.input :width, placeholder: @order.width
-                =f.submit "Recalculate Shipping"
-    %li.tab-header-and-content
-      %a.tab-link{:href => "javascript:void(0)"}
-        %h2 Customer Information
-      .tab-content
-        .clear
-          %ul
-            %li
-              %h3= @order.name
-            %li
-              %h5= mail_to @order.email, nil, target: "_newtab"
-            %hr.thick
-            %h3 Address
-            - @order.full_address.map do |x|
-              %li= x[1]

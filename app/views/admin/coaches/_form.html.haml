@@ -1,0 +1,42 @@
+.container.clear-nav
+  =button_to "All Coaches", admin_coaches_path, method: :get, class: "right"
+  =simple_form_for [:admin, @coach] do |f|
+    %ul.accordion-tabs
+      %li.tab-header-and-content
+        %a.is-active.tab-link{:href => "javascript:void(0)"}
+          %h2 Summary
+        .tab-content
+          - if @coach.errors.any?
+            #error_explanation
+              %h2
+                = pluralize(@coach.errors.count, "error")
+                prohibited this task from being saved:
+              %ul
+                - @coach.errors.full_messages.each do |msg|
+                  %li= msg
+          =f.input :name
+          =f.input :email
+          =f.input :phone
+          =f.input :bio
+          =f.input :contactable
+      %li.tab-header-and-content
+        %a.tab-link{:href => "javascript:void(0)"}
+          %h2 Profile Image
+        .tab-content
+          .half-column
+            -if @coach.image_1_id?
+              .post-image{style: "background: url( #{ attachment_url @coach, :image_1, :fill, 500, 300 } ), no-repeat center; background-size: cover"}
+            -else
+              .post-image{style: "background: url( 'http://placehold.it/500x300&text=No%20Image' ), no-repeat center; background-size: cover"}
+          .half-column
+            .inline-input
+              -if @coach.image_1_id?
+                #image_1_thumb.image_thumb{style: "background: url( #{ attachment_url @coach, :image_1, :fill, 75, 75 } ), no-repeat center; background-size: cover"}
+              -else
+                .image_thumb
+                  =fa_icon "upload"
+              =f.attachment_field :image_1
+    =f.submit "Save", class: "right"
+  -if @coach.persisted?
+    =button_to "Delete", [:admin, @coach], class: "btn-outline-white", method: :delete, data: { confirm: "Are you sure?" }
+

@@ -1,6 +1,9 @@
 %li.user-card
   .user-img
-    %div{style: "background: url( '#{ attachment_url user, :image_1, :fill, 250, 200 }' ), no-repeat center; background-size: cover"}
+    -if user.image_1_id?
+      %div{style: "background: url( '#{ attachment_url user, :image_1, :fill, 200, 200 }' ), no-repeat center; background-size: cover"}
+    -else
+      %div{style: "background: url( '#{ attachment_url slide_image, :image, :fill, 200, 200 }' ), no-repeat center; background-size: cover"}
   .user-content
     %h4= user.name
     -if user.contactable?

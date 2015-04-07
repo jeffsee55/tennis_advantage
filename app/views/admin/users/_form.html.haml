@@ -16,27 +16,8 @@
                   %li= msg
           =f.input :name
           =f.input :email
-          =f.input :phone
           =f.input :password
-          =f.input :bio
-          =f.input :contactable, as: :boolean, boolean_style: :inline
-      %li.tab-header-and-content
-        %a.tab-link{:href => "javascript:void(0)"}
-          %h2 Image
-        .tab-content
-          .half-column
-            -if @user.image_1_id?
-              .post-image{style: "background: url( #{ attachment_url @user, :image_1, :fill, 500, 300 } ), no-repeat center; background-size: cover"}
-            -else
-              .post-image{style: "background: url( 'http://placehold.it/500x300&text=No%20Image' ), no-repeat center; background-size: cover"}
-          .half-column
-            .inline-input
-              -if @user.image_1_id?
-                #image_1_thumb.image_thumb{style: "background: url( #{ attachment_url @user, :image_1, :fill, 75, 75 } ), no-repeat center; background-size: cover"}
-              -else
-                .image_thumb
-                  =fa_icon "upload"
-              =f.attachment_field :image_1
     =f.submit "Save", class: "right"
   -if @user.persisted?
-    =button_to "Delete", [:admin, @user], class: "btn-outline-red", method: :delete, data: { confirm: "Are you sure?" }
+    =button_to "Delete", [:admin, @user], class: "btn-outline-white", method: :delete, data: { confirm: "Are you sure?" }
+

@@ -16,6 +16,9 @@
             =link_to "PROGRAMS", admin_programs_path
         %li
           %strong
+            =link_to "COACHES", admin_coaches_path
+        %li
+          %strong
             =link_to "POSTS", admin_posts_path
         %li
           %strong
@@ -24,6 +27,7 @@
           %strong
             =link_to "MESSAGES", admin_messages_path
         %li
+          =link_to current_user.email, admin_user_path(current_user)
           =button_to "SIGN OUT", sign_out_path, class: "btn-outline-green", method: :delete
       #mobile-menu-close
         %i.fa.fa-close.fa-2x

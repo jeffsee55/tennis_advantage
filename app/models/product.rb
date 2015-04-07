@@ -6,7 +6,8 @@ class Product < ActiveRecord::Base
   attachment :image_3
   attachment :image_4
 
-  monetize :price_cents
+  register_currency :aud
+  monetize :price_cents, :with_currency => :aud
 
   include Scopes
   scope :by_category, -> { order('category DESC') }

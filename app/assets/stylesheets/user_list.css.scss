@@ -3,7 +3,27 @@
   padding: 2em 0;
 
   & > li:nth-child(even) {
-    @include omega();
+
+    @include media($medium-screen) {
+
+      @include omega();
+    }
+    @include media($large-screen) {
+
+      margin-right: 2.35765%;
+    }
+  }
+
+  & > li:nth-child(4n) {
+
+    @include media($medium-screen) {
+
+      @include omega();
+    }
+    @include media($large-screen) {
+
+      @include omega();
+    }
   }
   .user-card {
     background: $light-gray;

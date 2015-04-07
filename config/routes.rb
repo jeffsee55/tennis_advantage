@@ -28,6 +28,7 @@ Rails.application.routes.draw do
     resources :posts
     resources :programs
     resources :users
+    resources :coaches
     resources :orders do
       member do
         patch "ship", to: "orders#ship", as: "ship"
