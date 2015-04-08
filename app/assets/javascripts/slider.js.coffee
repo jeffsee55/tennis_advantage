@@ -11,35 +11,30 @@ $ ->
         left: "-=100%"
       i += 1
       console.log ("Slides: #{slides} | I: #{i}")
-      if i <= 0
-        $(card).find('.prev').css('display', 'none')
-      else
-        $(card).find('.prev').css('display', 'flex')
       if i >= ( slides - 1 )
-        $(card).find('.next').css('display', 'none')
+        $(@).removeClass('display-flex').addClass('display-none')
       else
-        $(card).find('.next').css('display', 'flex')
+        $(@).removeClass('display-none').addClass('display-flex')
+        console.log "this"
+        $(card).find('a.prev').removeClass('display-none').addClass('display-flex')
     $(card).find(".prev").click ->
       $(card).find('.product-slider ul').animate
         left: "+=100%"
       i -= 1
       console.log ("Slides: #{slides} | I: #{i}")
       if i <= 0
-        $(card).find('.prev').css('display', 'none')
+        console.log i
+        $(@).removeClass('display-flex').addClass('display-none')
       else
-        $(card).find('.prev').css('display', 'flex')
-      if i >= ( slides - 1 )
-        $(card).find('.next').css('display', 'none')
-      else
-        $(card).find('.next').css('display', 'flex')
-    if i <= 0
-      $(card).find('.prev').css('display', 'none')
+        $(@).removeClass('display-none').addClass('display-flex')
+        $(card).find('a.next').removeClass('display-none').addClass('display-flex')
+
+    if i == 0 && slides > 1
+      $(card).find('.prev').removeClass('display-flex').addClass('display-none')
+      $(card).find('.next').removeClass('display-none').addClass('display-flex')
     else
-      $(card).find('.prev').css('display', 'flex')
-    if i >= ( slides - 1 )
-      $(card).find('.next').css('display', 'none')
-    else
-      $(card).find('.next').css('display', 'flex')
+      $(card).find('.prev').removeClass('display-flex').addClass('display-none')
+      $(card).find('.next').removeClass('display-flex').addClass('display-none')
 
   $('#image_1_thumb').click ->
     $('.product-slider ul').css('left', '0%')

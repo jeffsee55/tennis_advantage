@@ -87,7 +87,6 @@
     top: 0;
     bottom: 0;
     z-index: 10;
-    @include display(flex);
     @include align-items(center);
     @include justify-content(center);
   }
@@ -110,4 +109,11 @@
       float: left;
     }
   }
+}
+
+a.display-flex {
+  @include display(flex);
+}
+a.display-none {
+  display: none;
 }
