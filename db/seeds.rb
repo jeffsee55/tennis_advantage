@@ -75,7 +75,7 @@ Product.create(
 Product.create(
   name: "Babolat AeroPro Light",
   description: "Available in L2, L3, L4, and includes string in xcel string",
-  category: "Tournament Player",
+  category: "Tournament Racquets",
   price_cents: 24900,
   weight: 16,
   length: 4,
@@ -86,7 +86,7 @@ Product.create(
 Product.create(
   name: "Babolat Pure Drive",
   description: "Available in L2, L3, L4, and includes string in xcel string",
-  category: "Tournament Player",
+  category: "Tournament Racquets",
   price_cents: 26900,
   weight: 16,
   length: 4,
@@ -97,7 +97,7 @@ Product.create(
 Product.create(
   name: "Babolat Pure Drive",
   description: "Available in L2, L3, L4, and includes string in xcel string",
-  category: "Tournament Player",
+  category: "Tournament Racquets",
   price_cents: 26900,
   weight: 16,
   length: 4,
@@ -108,7 +108,7 @@ Product.create(
 Product.create(
   name: "Babolat E-Sense",
   description: "",
-  category: "Competition and Intermediate Player",
+  category: "Competition, Intermediate & Junior Racquets",
   price_cents: 10500,
   weight: 16,
   length: 4,
@@ -119,7 +119,7 @@ Product.create(
 Product.create(
   name: "Babolat AeroPro Drive 26\"",
   description: "",
-  category: "Junior Player",
+  category: "Competition, Intermediate & Junior Racquets",
   price_cents: 14500,
   weight: 16,
   length: 4,
@@ -130,7 +130,7 @@ Product.create(
 Product.create(
   name: "Babolat Pure Junior 25\"/26\"",
   description: "",
-  category: "Junior Player",
+  category: "Competition, Intermediate & Junior Racquets",
   price_cents: 9000,
   weight: 16,
   length: 4,
@@ -141,7 +141,7 @@ Product.create(
 Product.create(
   name: "Nadal Junior Aluminum",
   description: "Nadal junior 21\", 21\", 25\"",
-  category: "Junior Player",
+  category: "Competition, Intermediate & Junior Racquets",
   price_cents: 3000,
   weight: 16,
   length: 4,
