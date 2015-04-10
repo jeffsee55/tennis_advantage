@@ -1,14 +1,10 @@
 =render partial: "partials/hero", locals: { page: @page }
-%h3 Tournament Player Racquets
+%h3 Tournament Racquets
 %hr.thick
 All tournament racquets are available in L2, L3, L4, and includes string in xcel string
 %ul.product-list
   =render partial: "partials/products_list", locals: { products: @tournament_player_products }
-%h3 Competition & Intermediate Level Racquets
+%h3 Competition, Intermediate & Junior Racquets
 %hr.thick
 %ul.product-list
   =render partial: "partials/products_list", locals: { products: @junior_player_products }
-%h3 Junior Racquets
-%hr.thick
-%ul.product-list
-  =render partial: "partials/products_list", locals: { products: @competition_player_products }

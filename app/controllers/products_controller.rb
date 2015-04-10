@@ -5,9 +5,8 @@ class ProductsController < ApplicationController
   end
 
   def index
-    @tournament_player_products = Product.where(category: "Tournament Player")
-    @junior_player_products = Product.where(category: "Junior Player")
-    @competition_player_products = Product.where(category: "Competition and Intermediate Player")
+    @tournament_player_products = Product.where(category: "Tournament Racquets")
+    @competition_player_products = Product.where(category: "Competition, Intermediate & Junior Racquets")
     @page = Page.find_by_slug("products")
   end
 
