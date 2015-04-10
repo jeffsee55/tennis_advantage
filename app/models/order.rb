@@ -12,7 +12,7 @@ class Order < ActiveRecord::Base
 
   attr_accessor :weight, :length, :width, :height
 
-  SHIPPING_RATE = 8.to_money
+  SHIPPING_RATE = 10.to_money
   STATES = %w[initialized pending purchased shipped completed]
   COMPANY_ADDRESS = {
         name: "Gregson's Tennis Advantage",
@@ -34,14 +34,14 @@ class Order < ActiveRecord::Base
       source: stripe_token
     ).id
     self.attributes= line_items.dimensions_and_weight
-    unless self.hand_deliver?
-      shipment = EasyPost::Shipment.create(
-        to_address: self.full_address,
-        from_address: COMPANY_ADDRESS,
-        parcel: self.dimensions_and_weight
-      )
-      self.shipment_id = shipment.id
-    end
+    #unless self.hand_deliver?
+      #shipment = EasyPost::Shipment.create(
+        #to_address: self.full_address,
+        #from_address: COMPANY_ADDRESS,
+        #parcel: self.dimensions_and_weight
+      #)
+      #self.shipment_id = shipment.id
+    #end
     self.save
     events.create! state: "pending"
   end
@@ -69,12 +69,7 @@ class Order < ActiveRecord::Base
   end
 
   def ship
-    shipment = EasyPost::Shipment.retrieve(shipment_id)
-    begin
-      shipment.buy(rate: shipment.lowest_rate)
-    rescue EasyPost::Error
-      events.create! state: "shipped"
-    end
+    events.create! state: "shipped"
   end
 
   def deliver
@@ -93,9 +88,9 @@ class Order < ActiveRecord::Base
     end
   end
 
-  def shipment
-    EasyPost::Shipment.retrieve(self.shipment_id) if self.shipment_id
-  end
+  #def shipment
+    #EasyPost::Shipment.retrieve(self.shipment_id) if self.shipment_id
+  #end
 
   def charge
     Stripe::Charge.retrieve(self.charge_id) if self.charge_id
@@ -105,11 +100,7 @@ class Order < ActiveRecord::Base
     if hand_deliver?
       return 0
     else
-      begin
-        shipment.lowest_rate
-      rescue EasyPost::Error
-        SHIPPING_RATE
-      end
+      SHIPPING_RATE
     end
   end
 
@@ -150,23 +141,23 @@ class Order < ActiveRecord::Base
     }
   end
 
-  def recalculate_shipping(order)
-    self.weight = order[:weight]
-    self.length = order[:length]
-    self.width = order[:width]
-    self.height = order[:height]
-    self.shipment_id = EasyPost::Shipment.create(
-      to_address: self.full_address,
-      from_address: COMPANY_ADDRESS,
-      parcel: {
-        weight: order[:weight],
-        length: order[:length],
-        width: order[:width],
-        height: order[:height]
-      }
-    ).id
-    self.save
-  end
+  #def recalculate_shipping(order)
+    #self.weight = order[:weight]
+    #self.length = order[:length]
+    #self.width = order[:width]
+    #self.height = order[:height]
+    #self.shipment_id = EasyPost::Shipment.create(
+      #to_address: self.full_address,
+      #from_address: COMPANY_ADDRESS,
+      #parcel: {
+        #weight: order[:weight],
+        #length: order[:length],
+        #width: order[:width],
+        #height: order[:height]
+      #}
+    #).id
+    #self.save
+  #end
 
   def color
     if current_state == "purchased"
@@ -188,11 +179,7 @@ class Order < ActiveRecord::Base
     if self.hand_deliver?
       "Delivery method: Hand Deliver"
     else
-      begin
-        "#{self.shipment.lowest_rate.carrier} | #{self.shipment.lowest_rate.service}"
-      rescue EasyPost::Error
-        "Delivery method: Shipment"
-      end
+      "Delivery method: Shipment"
     end
   end
 

@@ -7,62 +7,62 @@
   <title>We're sorry, but something went wrong (500)</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <style>
-  body {
-    background-color: #EFEFEF;
-    color: #2E2F30;
-    text-align: center;
-    font-family: arial, sans-serif;
-    margin: 0;
-  }
-
-  div.dialog {
-    width: 95%;
-    max-width: 33em;
-    margin: 4em auto 0;
-  }
-
-  div.dialog > div {
-    border: 1px solid #CCC;
-    border-right-color: #999;
-    border-left-color: #999;
-    border-bottom-color: #BBB;
-    border-top: #B00100 solid 4px;
-    border-top-left-radius: 9px;
-    border-top-right-radius: 9px;
-    background-color: white;
-    padding: 7px 12% 0;
-    box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
-  }
-
-  h1 {
-    font-size: 100%;
-    color: #730E15;
-    line-height: 1.5em;
-  }
-
-  div.dialog > p {
-    margin: 0 0 1em;
-    padding: 1em;
-    background-color: #F7F7F7;
-    border: 1px solid #CCC;
-    border-right-color: #999;
-    border-left-color: #999;
-    border-bottom-color: #999;
-    border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px;
-    border-top-color: #DADADA;
-    color: #666;
-    box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
-  }
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+    .hero {
+      background: url("http://d25krv79iv0jo8.cloudfront.net/attachments/store/fill/1100/500/a28f266d247659e248a1593ed301c8a79cb867b1e64b583a377d8c684f75/image"), linear-gradient(10deg, #20392B, #7F99BE), no-repeat #7F99BE scroll;
+      background-color: #324766;
+      background-position: top;
+      background-repeat: no-repeat;
+      background-size: cover;
+      padding-bottom: 3em;
+      font-family: Helvetica;
+      height: 100%;
+    }
+    .hero .hero-logo img {
+      height: 4em;
+      margin-bottom: 1em;
+    }
+    .hero .hero-inner {
+      color: white;
+      margin: auto;
+      padding: 3.5em;
+      text-align: center;
+    }
+    .hero .hero-inner .hero-copy {
+      text-align: center;
+    }
+    .hero .hero-inner .hero-copy h1 {
+      font-size: 1.6em;
+      margin-bottom: 2.5em;
+    }
+    .hero .hero-inner .hero-copy p {
+      font-weight: 200;
+      line-height: 1.4em;
+      margin: 0 auto 3em auto;
+    }
+    .hero .hero-inner button {
+      padding: 0.7em 1em;
+    }
+    .button {
+      text-decoration: none;
+      color: white;
+      padding: 0.75em 1em 0.5em;
+      background: tomato;
+      border-radius: 3px;
+    }
   </style>
 </head>
-
 <body>
-    <div class="dialog">
-    <div>
-      <h1>We're sorry, but something went wrong.</h1>
-    </div>
-    <p>If you are the application owner check the logs for more information.</p>
-  </div>
+<div class="hero">
+	<div class="hero-inner">
+    <a href="" class="hero-logo"><img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_2.png" alt="Logo Image"></a>
+		<div class="hero-copy">
+			<h1>Oops, this page no longer exists.</h1>
+		</div>
+    <a class="button" href="http://staging.tennisadvantage.com.au">Go Back</a>
+	</div>
+</div>
 </body>
-</html>
