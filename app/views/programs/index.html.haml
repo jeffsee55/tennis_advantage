@@ -4,13 +4,14 @@
     %a.is-active.tab-link{:href => "javascript:void(0)"}
       %h3 ANZ Hotshots
     .tab-content
-      .anz
-        .half-column
-          ANZ Tennis Hot Shots is just for kids. Smaller courts, lighter racquets and low-compression balls that don’t bounce too high make learning tennis fun and easy for primary school-aged children. This means that kids are able to start rallying and having fun right from their first lesson!
-          =link_to "http://hotshots.tennis.com.au/start-playing/claim" do
-            .hotshots-shirt
-        .half-column
-          %iframe{:allowfullscreen => "", :frameborder => "0", :height => "315", :src => "//www.youtube.com/embed/FOG0ViKczLo", :width => "100%"}
+      .clear
+        .anz
+          .half-column
+            ANZ Tennis Hot Shots is just for kids. Smaller courts, lighter racquets and low-compression balls that don’t bounce too high make learning tennis fun and easy for primary school-aged children. This means that kids are able to start rallying and having fun right from their first lesson!
+            =link_to "http://hotshots.tennis.com.au/start-playing/claim" do
+              .hotshots-shirt
+          .half-column
+            %iframe{:allowfullscreen => "", :frameborder => "0", :height => "315", :src => "//www.youtube.com/embed/FOG0ViKczLo", :width => "100%"}
       =render partial: "partials/public_index", locals: { resource_name: "Program", resources: @anz_programs, button: nil }
   %li.tab-header-and-content
     %a.tab-link{:href => "javascript:void(0)"}
