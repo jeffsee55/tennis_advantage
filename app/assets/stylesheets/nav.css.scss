@@ -96,3 +96,7 @@
   }
 }
 
+div.nav-menu.display-flex {
+  @include display(flex);
+}
+
