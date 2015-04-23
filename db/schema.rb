@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150407213707) do
+ActiveRecord::Schema.define(version: 20150422225901) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 20150407213707) do
     t.string   "total_currency", default: "USD", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "variations"
   end
 
   create_table "messages", force: true do |t|
@@ -113,6 +114,13 @@ ActiveRecord::Schema.define(version: 20150407213707) do
     t.string   "image_1_id"
   end
 
+  create_table "product_variants", force: true do |t|
+    t.integer  "product_id"
+    t.integer  "variant_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "products", force: true do |t|
     t.string   "name"
     t.integer  "weight"
@@ -130,6 +138,7 @@ ActiveRecord::Schema.define(version: 20150407213707) do
     t.integer  "inventory",      default: 12
     t.text     "description"
     t.string   "category"
+    t.text     "variations"
   end
 
   create_table "program_categories", force: true do |t|
@@ -175,5 +184,13 @@ ActiveRecord::Schema.define(version: 20150407213707) do
 
   add_index "users", ["email"], name: "index_users_on_email", using: :btree
   add_index "users", ["remember_token"], name: "index_users_on_remember_token", using: :btree
+
+  create_table "variants", force: true do |t|
+    t.string   "name"
+    t.text     "options"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "description"
+  end
 
 end

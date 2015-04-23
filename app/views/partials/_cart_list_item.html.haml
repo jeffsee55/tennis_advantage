@@ -1,0 +1,19 @@
+%tr{id: "row_#{line_item.id}"}
+  %td.icon
+    -if img
+      .img{style: "background: url( #{ attachment_url img, :image_1, :fill, 75, 75 } ), no-repeat center; background-size: cover"}
+    -else
+      .sprite{ class: "#{ color } " }
+        %i{ class: "fa fa-2x #{ icon } " }
+  %td.primary
+    %h4=primary
+    -#%a{ href: "#{ link }", method: (method || "GET")}
+    -#=link_to link, method: (method || "GET") do
+    %h6=link_text
+  %td.secondary
+    =link_to adjust_qty_to_line_item_path(line_item, qty: 1), method: :patch, remote: true do
+      .fa.fa-plus
+    =link_to adjust_qty_to_line_item_path(line_item, qty: -1), method: :patch, remote: true do
+      .fa.fa-minus
+  %td.details{id: "line_item_#{line_item.id}"}
+    =details

@@ -1,7 +1,7 @@
 =render partial: "partials/hero", locals: { page: @page }
 %table.list-table
   -@line_items.each do |line_item|
-    =render partial: "partials/list_item", locals: line_item.to_local_list_item
+    =render partial: "partials/cart_list_item", locals: line_item.to_cart_list_item
 .order-summary
   %ul.billing
     %li.bold Billing Information
@@ -12,7 +12,7 @@
   %table.totals
     %tr
       %td Sub Total
-      %td= @line_items.sub_total
+      %td.sub-total= cart_session.sub_total
     %tr
       %td Shipping
       %td --

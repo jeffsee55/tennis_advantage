@@ -7,26 +7,44 @@ class LineItem < ActiveRecord::Base
 
   default_scope{order("created_at DESC")}
 
+  def to_cart_list_item
+    {
+      line_item: self,
+      img: self.product,
+      color: nil,
+      icon: nil,
+      primary: self.product.name,
+      link: nil,
+      link_text: self.variations,
+      secondary: nil,
+      details: "Qty. #{self.qty} | #{self.total}"
+    }
+  end
+
+  def qty_and_price
+    "Qty. #{self.qty} | #{self.total}"
+  end
+
   def to_local_list_item
     {
       img: self.product,
       color: nil,
       icon: nil,
       primary: self.product.name,
-      link: Rails.application.routes.url_helpers.product_path(self.product),
-      link_text: "Qty: #{ self.qty }",
-      secondary: self.product.price,
-      details: self.total
+      link: Rails.application.routes.url_helpers.product_path(self.product.id),
+      link_text: "View Product",
+      secondary: self.variations,
+      details: "Qty. #{self.qty} | #{self.total}"
     }
   end
 
-  def self.sub_total
-    sum = 0
-    self.all.map do |line_item|
-      sum += line_item.total
-    end
-    return sum
-  end
+  #def self.sub_total
+    #sum = 0
+    #self.all.map do |line_item|
+      #sum += line_item.total
+    #end
+    #return sum
+  #end
 
   def widest_side
     [self.product.length, self.product.width, self.product.height].max

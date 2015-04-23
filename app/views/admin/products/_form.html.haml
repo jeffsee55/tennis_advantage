@@ -11,11 +11,9 @@
             =f.input :name, label: false, placeholder: "Name"
             =f.input :price, label: false, placeholder: "Price"
             =f.input :description, label: false, placeholder: "Description"
+            =f.input :category, collection: Product::CATEGORIES, include_blank: false
           .half-column
-            =f.input :weight, label: "Weight (in ounces)", placeholder: "Ex. 15"
-            =f.input :length, label: "Length (in inches)", placeholder: "Ex. 12"
-            =f.input :height, label: "Height (in inches)", placeholder: "Ex. 8"
-            =f.input :width, label: "Width (in inches)", placeholder: "Ex. 3"
+            =f.association :variants, as: :check_boxes, label_method: :name_and_desc, collection: Variant.all, label: "Additional Options"
       %li.tab-header-and-content
         %a.tab-link{:href => "javascript:void(0)"}
           %h2 Images

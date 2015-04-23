@@ -6,5 +6,5 @@
 
 =simple_form_for @order do |f|
   =f.submit "Checkout", class: "right"
-=button_to "Empty Cart", empty_cart_path, method: :delete, class: "left btn-outline-red"
+=button_to "Back to cart", cart_path, class: "left btn-outline-green", method: :get
 

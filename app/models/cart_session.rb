@@ -1,4 +1,8 @@
 class CartSession
+
+  #register_currency :aud
+  #monetize :sub_total_cents, with_model_currency: :aud
+
   def initialize(session)
     @session = session
     @session[:line_item_ids] ||= []
@@ -6,6 +10,14 @@ class CartSession
 
   def item_count
     line_items.count
+  end
+
+  def sub_total_cents
+    line_items.sum(:total_cents)
+  end
+
+  def sub_total
+    ( sub_total_cents / 100 ).to_money
   end
 
   def empty?
@@ -38,6 +50,5 @@ class CartSession
       line_item.order_id = order_id
       line_item.save
     end
-    puts "Line Items created"
   end
 end

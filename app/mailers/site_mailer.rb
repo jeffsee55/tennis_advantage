@@ -36,10 +36,10 @@ class SiteMailer < ActionMailer::Base
         { name: "IMAGE", content: "https://s3-ap-southeast-2.amazonaws.com/tennis-advantage-assets/store/gregsons-tennis-banner-logo.png"},
         { name: "ORDER_NO", content: "Order no. ##{ order.id }"},
         { name: "DELIVERY_METHOD", content: order.delivery_method.upcase },
-        { name: "ORDER_ITEMS", content: order.line_items.map { |item| "#{item.product.name}, Qty #{item.qty} (#{item.product.price})" }.join("<br>") },
+        { name: "ORDER_ITEMS", content: order.line_items.map { |item| "#{item.product.name}, Options: #{item.variations}, Qty #{item.qty} (#{item.product.price})" }.join("<br>") },
         { name: "ORDER_SHIPPING", content: order.shipping_rate },
         { name: "ORDER_TOTAL", content: order.total },
-        { name: "ORDER_LINK", content: admin_order_url(order) }
+        { name: "ORDER_LINK", content: "http://staging.tennisadvantage.com.au/#{admin_order_path(order)}" }
       ],
     }
 
@@ -59,7 +59,7 @@ class SiteMailer < ActionMailer::Base
         { name: "ORDER_NO", content: "Order no. ##{ order.id }"},
         { name: "DELIVERY_METHOD", content: order.delivery_method.upcase },
         { name: "DELIVERY_INFO", content: order.delivery_info },
-        { name: "ORDER_ITEMS", content: order.line_items.map { |item| "#{item.product.name}, Qty #{item.qty} (#{item.product.price})" }.join("<br>") },
+        { name: "ORDER_ITEMS", content: order.line_items.map { |item| "#{item.product.name}, Options: #{item.variations}, Qty #{item.qty} (#{item.product.price})" }.join("<br>") },
         { name: "ORDER_SHIPPING", content: order.shipping_rate },
         { name: "ORDER_TOTAL", content: order.total }
       ],

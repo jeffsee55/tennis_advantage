@@ -1,6 +1,7 @@
 table.list-table {
   tr {
     background: $light-gray;
+    border-bottom: solid 10px white;
   }
 
   td {
@@ -43,6 +44,10 @@ table.list-table {
   .secondary {
     text-align: right;
     width: 40%;
+
+    a {
+      display: block;
+    }
   }
 
   .details {

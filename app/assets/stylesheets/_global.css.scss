@@ -49,6 +49,11 @@ input{
   width: 100%;
 }
 
+input.check_boxes {
+  display: inline-block;
+  width: 20px;
+}
+
 input.btn-outline-green {
   border: 1px solid $green;
   background-color: transparent;

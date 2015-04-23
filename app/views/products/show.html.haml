@@ -5,7 +5,12 @@
     %h1= @product.name.upcase
     %h3= humanized_money_with_symbol @product.price
     %p= @product.description
-    =button_to "Add to Cart", create_line_item_path(line_item: { product_id: @product.id, qty: 1 })
+    =simple_form_for LineItem.new do |f|
+      =f.input :qty, as: :hidden, input_html: { value: 1 }
+      -@product.variants.each do |v|
+        =select_tag "variations[#{v.name.singularize.downcase.parameterize.to_sym}]", options_for_select(v.options.map { |option| "#{v.name.singularize} - #{option}" })
+      =f.input :product_id, as: :hidden, input_html: { value: @product.id }
+      =f.submit "Add to Cart"
 %hr.thick
 %h1 OTHER PRODUCTS
 = render partial: "partials/products_list", locals: { products: @products }

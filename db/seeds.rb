@@ -213,3 +213,18 @@ Program.create(
   description: "We have holiday programs most weeks of school holidays - see home page for current programs",
   category: "Lessons"
 )
+
+Variant.create(
+  name: "Length (25\", 26\")",
+  options: ["25", "26"]
+)
+
+Variant.create(
+  name: "Length (21\", 23\", 25\")",
+  options: ["21", "23", "25"]
+)
+
+Variant.create(
+  name: "Grip Sizes",
+  options: ["L2", "L3", "L4"]
+)

@@ -1,0 +1,5 @@
+<% if @line_item.qty == 0 %>
+    $("#row_<%= @line_item.id.to_s %>").remove();
+<% end %>
+$("#line_item_<%= escape_javascript(@line_item.id.to_s)%>").text("<%= escape_javascript(@line_item.qty_and_price) %>")
+$(".sub-total").text("<%= escape_javascript(cart_session.sub_total.to_s) %>")

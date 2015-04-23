@@ -37,9 +37,7 @@
               %ul
                 %li=@order.delivery_method
                 %li="$#{ @order.shipping_rate }"
-                -if @order.shipment.postage_label
-                  =button_to "Print Postage Label", @order.shipment.postage_label.label_url, method: :get, target: "_blank"
-                -elsif @order.current_state == "shipped"
+                -if @order.current_state == "shipped"
                   %strong Shipped
                 -else
                   =button_to "Mark Shipped", ship_admin_order_path, method: :patch

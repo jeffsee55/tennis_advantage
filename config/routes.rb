@@ -8,7 +8,11 @@ Rails.application.routes.draw do
   get "home", to: "pages#home", as: "home"
   get "about", to: "pages#about", as: "about"
   get "contact", to: "pages#contact", as: "contact"
-  resources :line_items
+  resources :line_items do
+    member do
+      patch "adjust_qty_to"
+    end
+  end
   resources :orders do
     member do
       patch "purchase", to: "orders#update"
